@@ -1,0 +1,42 @@
+@import "../../scss/colors";
+
+header {
+  .header-items {
+    padding: 0 100px;
+    display: flex;
+    width: 100%;
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .header-items-1, .header-items-2 {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    a {
+      color: $color-snow;
+    }
+  }
+
+  .example-spacer {
+    flex: 1 1 50px;
+  }
+
+  .mob-menu {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .mob-menu {
+      display: block;
+    }
+
+    .header-container {
+      display: none !important;
+    }
+  }
+}
+

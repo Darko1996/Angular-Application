@@ -1,0 +1,24 @@
+<section class="login" [@slideIn]>
+  <h1>Register</h1>
+  <form (submit)="onRegister()" [formGroup]="form">
+    <input type="text" formControlName="firstName" name="firstName" placeholder="First Name">
+    <small class="text-danger" *ngIf="form.get('firstName').touched && !form.get('firstName').value">You need to enter First Name!</small>
+    <input type="text" formControlName="lastName" name="lastName" placeholder="Last Name">
+    <small class="text-danger" *ngIf="form.get('lastName').touched && !form.get('lastName').value">You need to enter Last Name!</small>
+    <input type="text" formControlName="username" name="username" placeholder="Username">
+    <small class="text-danger" *ngIf="form.get('username').touched && !form.get('username').value">You need to enter Username!</small>
+    <input type="email" email formControlName="email" name="email" placeholder="Email">
+    <small class="text-danger" *ngIf="form.get('email').touched && !form.get('email').value">You need to enter Email!</small>
+    <input type="text" formControlName="phone" name="phone" placeholder="Phone">
+    <small class="text-danger" *ngIf="form.get('phone').touched && !form.get('phone').value">You need to enter Phone!</small>
+    <input type="password" formControlName="password" name="password" placeholder="Password">
+    <small class="text-danger" *ngIf="form.get('password').value && form.get('password').value.length < 6 && form.get('password').touched">Password need to have min 6 characters!</small>
+    <button type="submit" class="btn btn-primary btn-block btn-large" [disabled]="!form.valid">Submit</button>
+  </form>
+  <div class="alert alert-danger mt-5" *ngIf="error">
+    <p>{{error}}</p>
+  </div>
+  <small *ngIf="!form.valid && form.get('password').touched && form.get('username').touched" class="text-danger">
+    Username or password is incorrect
+  </small>
+</section>

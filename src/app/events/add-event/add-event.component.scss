@@ -1,0 +1,21 @@
+section {
+  margin: auto;
+  width:300px;
+  min-height:300px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-card-actions {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mat-card-header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+}

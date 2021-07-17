@@ -1,0 +1,43 @@
+<header>
+  <mat-toolbar color="primary">
+    <div class="header-items">
+      <a routerLink="/">Event Viewer</a>
+      <span class="example-spacer"></span>
+      <div class="header-container">
+        <div class="header-items-1">
+          <a routerLink="/"><button mat-button>Home</button></a>
+          <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-button>Events</button></a>
+          <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-button>Add Event</button></a>
+        </div>
+
+        <div class="header-items-2">
+          <a routerLink="/login" *ngIf="!userIsAuthenticated"><button mat-button>Login</button></a>
+          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>Logout</button></a>
+          <a routerLink="/register"><button mat-button>Register</button></a>
+        </div>
+      </div>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="mob-menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <a routerLink="/"><button mat-button>Home</button></a>
+      <mat-divider></mat-divider>
+      <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-menu-item>Events</button></a>
+      <mat-divider></mat-divider>
+      <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-menu-item>Add Event</button></a>
+      <mat-divider></mat-divider>
+      <a routerLink="/login" *ngIf="!userIsAuthenticated">
+        <button mat-menu-item>
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </button>
+      </a>
+      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>Logout</button></a>
+      <a routerLink="/register"><button mat-button>Register</button></a>
+    </mat-menu>
+  </mat-toolbar>
+</header>
+

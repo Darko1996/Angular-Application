@@ -1,0 +1,39 @@
+{
+    "news": [
+      {
+        "id": 1,
+        "title": "Second US coronavirus wave 'could be even worse'",
+        "place": "Spain",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ea similique eum sapiente magnam est commodi aperiam numquam cumque. Ipsam quaerat facere sint saepe sunt odio non dignissimos consequatur velit.",
+        "image": "https://ichef.bbci.co.uk/news/624/cpsprodpb/B529/production/_111877364_tv061128043.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Romania hands out steep lockdown fines",
+        "place": "Romania",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ea similique eum sapiente magnam est commodi aperiam numquam cumque. Ipsam quaerat facere sint saepe sunt odio non dignissimos consequatur velit.",
+        "image": "https://ichef.bbci.co.uk/news/660/cpsprodpb/E5FD/production/_111877885_mediaitem111877417.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Netflix gets 16 million new sign-ups thanks to lockdown",
+        "place": "USA",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ea similique eum sapiente magnam est commodi aperiam numquam cumque. Ipsam quaerat facere sint saepe sunt odio non dignissimos consequatur velit.",
+        "image": "https://ichef.bbci.co.uk/news/660/cpsprodpb/155C9/production/_111879478_gettyimages-1212573995.jpg"
+      },
+      {
+        "id": 2,
+        "title": "World risks 'biblical' famines due to pandemic - UN",
+        "place": "USA",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ea similique eum sapiente magnam est commodi aperiam numquam cumque. Ipsam quaerat facere sint saepe sunt odio non dignissimos consequatur velit.",
+        "image": "https://ichef.bbci.co.uk/news/660/cpsprodpb/844B/production/_111876833_059885068.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Fortnite reluctantly comes to Google Play store",
+        "place": "Canada",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ea similique eum sapiente magnam est commodi aperiam numquam cumque. Ipsam quaerat facere sint saepe sunt odio non dignissimos consequatur velit.",
+        "image": "https://ichef.bbci.co.uk/news/660/cpsprodpb/53C8/production/_111884412_whatsubject.jpg"
+      }
+    ]
+  }
