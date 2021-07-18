@@ -1,5 +1,5 @@
 <header>
-  <mat-toolbar color="primary">
+  <svg class="header-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#673ab7" fill-opacity="1" d="M0,96L80,90.7C160,85,320,75,480,80C640,85,800,107,960,106.7C1120,107,1280,85,1360,74.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>  <mat-toolbar color="primary">
     <div class="header-items">
       <a routerLink="/">Event Viewer</a>
       <span class="example-spacer"></span>
@@ -11,9 +11,9 @@
         </div>
 
         <div class="header-items-2">
-          <a routerLink="/login" *ngIf="!userIsAuthenticated"><button mat-button>Login</button></a>
-          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>Logout</button></a>
-          <a routerLink="/register"><button mat-button>Register</button></a>
+          <a routerLink="/login" *ngIf="!userIsAuthenticated"><button mat-button>Sing In</button></a>
+          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>Sing Out</button></a>
+          <app-shared-language-menu orientation="horizontal"></app-shared-language-menu>
         </div>
       </div>
 
@@ -32,11 +32,11 @@
       <a routerLink="/login" *ngIf="!userIsAuthenticated">
         <button mat-menu-item>
           <mat-icon>login</mat-icon>
-          <span>Login</span>
+          <span>Sing In</span>
         </button>
       </a>
-      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>Logout</button></a>
-      <a routerLink="/register"><button mat-button>Register</button></a>
+      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>Sing Out</button></a>
+
     </mat-menu>
   </mat-toolbar>
 </header>

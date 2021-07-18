@@ -1,0 +1,87 @@
+@import "../../../scss/colors";
+
+.language-menu-horizontal {
+  position: absolute;
+  left: 0.8em;
+  top: 0.5em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  height: 30px;
+
+  .selected-language {
+    margin-bottom: 0.2em;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 5px;
+  }
+
+  .language {
+    display: flex;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    background: $color-snow;
+  }
+
+  .available-languages {
+    margin-top: -0.2em;
+    border-radius: 4px;
+    margin-left: 5px;
+    border: solid 1px $color-snow;
+    border-bottom: none;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+
+    .language {
+      background: $color-pearl;
+      border-bottom: solid 1px $color-snow;
+
+    }
+  }
+}
+
+.language-menu {
+  position: absolute;
+  left: 2em;
+  top: 1em;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 35px;
+
+  .selected-language {
+    margin-bottom: 0.2em;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .language {
+    display: flex;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    background: $color-snow;
+  }
+
+  .available-languages {
+    margin-top: 0.2em;
+    border-radius: 4px;
+    border: solid 1px $color-snow;
+    border-bottom: none;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+
+    .language {
+      background: $color-pearl;
+      border-bottom: solid 1px $color-snow;
+    }
+  }
+}
+
+.svg {}

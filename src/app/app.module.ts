@@ -2,7 +2,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +16,7 @@ import { EditEventComponent } from './events/edit-event/edit-event.component';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {AngularMaterialModule} from './material.module';
 import {DialogComponent} from './shared/dialog/dialog.component';
+import {SharedLanguageMenuComponent} from './shared/shared-language-menu/shared-language-menu.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {DialogComponent} from './shared/dialog/dialog.component';
     FooterComponent,
     RegisterComponent,
     EditEventComponent,
-    DialogComponent
+    DialogComponent,
+    SharedLanguageMenuComponent
   ],
   imports: [
     BrowserModule,

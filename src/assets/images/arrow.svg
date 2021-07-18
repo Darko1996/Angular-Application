@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14.828" height="8.414" viewBox="0 0 14.828 8.414">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#b4b4b4;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <path id="arrow" d="M18 15l-6-6-6 6" class="cls-1" transform="rotate(180 9.707 8.207)"/>
+</svg>

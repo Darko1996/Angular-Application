@@ -38,5 +38,11 @@ header {
       display: none !important;
     }
   }
+
+  svg {
+    position: absolute;
+    z-index: -1;
+  }
+
 }
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.414" height="14.828" viewBox="0 0 8.414 14.828">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#b4b4b4;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="arrow-button-locked" transform="translate(1.414 1.414)">
+        <path id="arrow-button-locked-2" d="M18 15l-6-6-6 6" class="cls-1" data-name="arrow-button-locked" transform="rotate(90 10.5 4.5)"/>
+    </g>
+</svg>

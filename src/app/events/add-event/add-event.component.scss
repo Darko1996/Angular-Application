@@ -1,3 +1,5 @@
+@import "../../../scss/colors";
+
 section {
   margin: auto;
   width:300px;
@@ -17,5 +19,10 @@ section {
     display: flex;
     justify-content: center;
     padding-bottom: 10px;
+  }
+
+  button {
+    background: $color-primary;
+    color: $color-snow;
   }
 }
