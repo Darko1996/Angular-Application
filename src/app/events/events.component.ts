@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {slideIn} from '../animations';
 import {EventService} from '../services/event.service';
 import {finalize, map, takeUntil} from 'rxjs/operators';
@@ -8,11 +8,9 @@ import {Event} from '../models/Event';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogComponent} from '../shared/dialog/dialog.component';
+import {SharedDialogComponent} from '../shared/shared-dialog/shared-dialog.component';
 import {Dialog, DialogMode} from '../models/Dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
-// import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-events',
@@ -60,20 +58,8 @@ export class EventsComponent implements OnInit, OnDestroy {
     });
   }
 
-  withoutTime(nowDate) {
-    return (nowDate.getMonth() + 1 ) + '/' + nowDate.getDate() + '/' + nowDate.getFullYear();
-  }
-
   editEvent(event: Event) {
     this.router.navigate(['/edit-event', event.id], {queryParams: {id: event.id} });
-  }
-
-  viewModal(event: Event, template) {
-    this.event = event;
-    this.openModal(template);
-  }
-
-  openModal(template: TemplateRef<any>) {
   }
 
   confirm(): void {
@@ -104,7 +90,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 
     console.log('dialog', dialog );
     if (dialog) {
-      const dialogRef = this.dialog.open(DialogComponent, {data: dialog, width: dialog.width});
+      const dialogRef = this.dialog.open(SharedDialogComponent, {data: dialog, width: dialog.width});
       dialogRef.afterClosed().subscribe(result => {
         if (result === true) {
           this.confirm();

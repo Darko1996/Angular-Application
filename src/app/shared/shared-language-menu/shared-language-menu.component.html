@@ -5,8 +5,8 @@
            [alt]="currentLanguage?.locale">
     </div>
   </div>
-  <img [src]="(orientation === 'vertical') ? '../../../assets/images/arrow.svg' : '../../../assets/images/arrow-button-locked.svg'" alt="Arrow" (click)="toggleAvailable()">
-  <div *ngIf="showAvailable" class="available-languages">
+  <img style="margin-bottom: 5px;" [src]="(orientation === 'vertical') ? '../../../assets/images/arrow.svg' : '../../../assets/images/arrow-button-locked.svg'" alt="Arrow" (click)="toggleAvailable()">
+  <div [ngClass]="{'open-language' : showAvailable, 'available-languages' : !showAvailable}">
     <div *ngFor="let language of languages" (click)="select(language.locale)">
       <div *ngIf="language !== currentLanguage" class="language">
         <img [src]="language.src" [srcset]="language.srcset" [alt]="language.locale">

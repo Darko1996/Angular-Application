@@ -1,19 +1,19 @@
 <header>
   <svg class="header-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#673ab7" fill-opacity="1" d="M0,96L80,90.7C160,85,320,75,480,80C640,85,800,107,960,106.7C1120,107,1280,85,1360,74.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>  <mat-toolbar color="primary">
     <div class="header-items">
-      <a routerLink="/">Event Viewer</a>
+      <a routerLink="/">{{'navigation.event-viewer' | translate}}</a>
       <span class="example-spacer"></span>
       <div class="header-container">
         <div class="header-items-1">
-          <a routerLink="/"><button mat-button>Home</button></a>
-          <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-button>Events</button></a>
-          <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-button>Add Event</button></a>
+          <a routerLink="/"><button mat-button>{{'navigation.home' | translate}}</button></a>
+          <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.events' | translate}}</button></a>
+          <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.add-event' | translate}}</button></a>
         </div>
 
         <div class="header-items-2">
-          <a routerLink="/login" *ngIf="!userIsAuthenticated"><button mat-button>Sing In</button></a>
-          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>Sing Out</button></a>
-          <app-shared-language-menu orientation="horizontal"></app-shared-language-menu>
+          <a routerLink="/login" *ngIf="!userIsAuthenticated"><button mat-button>{{'navigation.sign-in' | translate}}</button></a>
+          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.sign-out' | translate}}</button></a>
+          <app-shared-language-menu orientation="vertical"></app-shared-language-menu>
         </div>
       </div>
 
@@ -23,20 +23,20 @@
     </div>
 
     <mat-menu #menu="matMenu">
-      <a routerLink="/"><button mat-button>Home</button></a>
+      <a routerLink="/"><button mat-button>{{'navigation.home' | translate}}</button></a>
       <mat-divider></mat-divider>
-      <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-menu-item>Events</button></a>
+      <a routerLink="/events" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.events' | translate}}</button></a>
       <mat-divider></mat-divider>
-      <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-menu-item>Add Event</button></a>
+      <a routerLink="/add-event" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.add-event' | translate}}</button></a>
       <mat-divider></mat-divider>
       <a routerLink="/login" *ngIf="!userIsAuthenticated">
         <button mat-menu-item>
           <mat-icon>login</mat-icon>
-          <span>Sing In</span>
+          <span>{{'navigation.sign-in' | translate}}</span>
         </button>
       </a>
-      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>Sing Out</button></a>
-
+      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.sign-out' | translate}}</button></a>
+      <app-shared-language-menu orientation="horizontal"></app-shared-language-menu>
     </mat-menu>
   </mat-toolbar>
 </header>

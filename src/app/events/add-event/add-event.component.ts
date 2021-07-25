@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 // @ts-ignore
 import moment from 'moment';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-event',
@@ -23,7 +24,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
   constructor(private eventService: EventService,
               public router: Router,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -38,7 +40,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar() {
-    this.snackBar.open('You successfully added the Event', 'Close', {duration: 1500});
+    this.snackBar.open(this.translate.instant('dialog.add-event'), 'Close', {duration: 1500});
   }
 
   onAddEvent() {

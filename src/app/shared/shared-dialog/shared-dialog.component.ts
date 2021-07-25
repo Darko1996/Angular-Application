@@ -1,15 +1,13 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Dialog} from '../../models/Dialog';
-
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  selector: 'app-shared-dialog',
+  templateUrl: './shared-dialog.component.html',
+  styleUrls: ['./shared-dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class SharedDialogComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<SharedDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   onDismiss(): void {

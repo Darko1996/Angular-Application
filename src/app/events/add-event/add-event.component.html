@@ -2,26 +2,26 @@
   <form (submit)="onAddEvent()" [formGroup]="form">
     <mat-card class="card">
       <mat-card-header>
-        <mat-card-title>Add New Event</mat-card-title>
+        <mat-card-title>{{'add-event.add-new-event' | translate}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
+          <mat-label>{{'add-event.name' | translate}}</mat-label>
           <input matInput type="text" formControlName="name" name="name">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
+          <mat-label>{{'add-event.choose-date' | translate}}</mat-label>
           <input matInput [matDatepicker]="datepicker" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
           <mat-datepicker #datepicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Description</mat-label>
+          <mat-label>{{'add-event.desc' | translate}}</mat-label>
           <textarea matInput type="textarea" formControlName="desc" name="desc"></textarea>
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button [disabled]="!form.valid" type="submit" mat-raised-button>Add Event</button>
+        <button [disabled]="!form.valid" type="submit" mat-raised-button>{{'add-event.add-event' | translate}}</button>
       </mat-card-actions>
     </mat-card>
   </form>

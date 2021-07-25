@@ -1,0 +1,70 @@
+{
+  "navigation": {
+    "event-viewer": "Event Viewer",
+    "home": "Home",
+    "events": "Events",
+    "add-event": "Add Event",
+    "sign-in": "Sign In",
+    "sign-out": "Sign Out"
+  },
+  "home": {
+    "home-page": "Home Page",
+    "sign-in-whole-app": "Sign In to see the whole application"
+  },
+  "events": {
+    "number": "No.",
+    "name": "Name",
+    "date": "Date",
+    "desc": "Description",
+    "edit": "Edit",
+    "del": "Delete"
+  },
+  "add-event": {
+    "add-new-event": "Add New Event",
+    "name": "Name",
+    "choose-date": "Choose a date",
+    "desc": "Description",
+    "add-event": "Add Event"
+  },
+  "edit-event": {
+    "edit-event": "Edit Event",
+    "save": "Save"
+  },
+  "sign-in": {
+    "sign-in": "Sign In",
+    "no-acc": "Don't have Account?",
+    "email": "Email",
+    "pass": "Password",
+    "create-acc": "Create an Account"
+  },
+  "sign-up": {
+    "sign-up": "Sign Up",
+    "have-acc": "Already have a Account?",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "username": "Username",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password"
+  },
+  "errors": {
+    "err-username-password": "Username or password is incorrect",
+    "err-first-name": "You need to enter First Name!",
+    "err-last-name": "You need to enter Last Name!",
+    "err-username": "You need to enter Username!",
+    "err-email": "You need to enter Email!",
+    "err-phone": "You need to enter Phone!",
+    "err-pass": "Password need to have min 6 characters!"
+  },
+  "buttons": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "save": "Save"
+  },
+  "dialog": {
+    "save-event": "You successfully saved the Event!",
+    "add-event": "You successfully added the Event!"
+  }
+}

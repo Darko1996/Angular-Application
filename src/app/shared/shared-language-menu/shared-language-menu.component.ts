@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-shared-language-menu',
@@ -6,14 +7,13 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./shared-language-menu.component.scss']
 })
 export class SharedLanguageMenuComponent implements OnInit {
-
   @Input() orientation?: 'horizontal' | 'vertical';
 
   currentLanguage: any;
   languages: any[];
   showAvailable = false;
 
-  constructor() {
+  constructor(private translateService: TranslateService) {
     this.languages = [{
       locale: 'en',
       src: '../../../assets/images/languages-menu/en.png'
@@ -22,10 +22,12 @@ export class SharedLanguageMenuComponent implements OnInit {
       locale: 'rs',
       src: '../../../assets/images/languages-menu/rs.png'
     }];
+
+    this.translateService.setDefaultLang('en');
   }
 
   ngOnInit() {
-    // this.currentLanguage = this.getCurrentLanguageData(this.translateService.currentLang);
+    this.currentLanguage = this.getCurrentLanguageData(this.translateService.currentLang);
   }
 
   toggleAvailable() {
@@ -39,8 +41,7 @@ export class SharedLanguageMenuComponent implements OnInit {
   select(language: string) {
     this.currentLanguage = this.getCurrentLanguageData(language);
     this.toggleAvailable();
-    // this.translateService.use(language);
-    // TODO: Do real translate
+    this.translateService.use(language);
   }
 
 }

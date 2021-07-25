@@ -9,6 +9,7 @@ import {EventService} from '../../services/event.service';
 // @ts-ignore
 import moment from 'moment';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-event',
@@ -25,7 +26,8 @@ export class EditEventComponent implements OnInit, OnDestroy {
   constructor(public activatedRoute: ActivatedRoute,
               public eventService: EventService,
               public router: Router,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -41,7 +43,7 @@ export class EditEventComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar() {
-    this.snackBar.open('You successfully saved the Event', 'Close', {duration: 1500});
+    this.snackBar.open(this.translate.instant('dialog.save-event'), 'Close', {duration: 1500});
   }
 
   ngOnDestroy() {

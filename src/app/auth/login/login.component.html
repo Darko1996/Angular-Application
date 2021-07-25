@@ -3,32 +3,32 @@
     <div class="container">
       <div class="col-left">
         <div class="login-text">
-          <h2>Don't have Account?</h2>
+          <h2>{{'sign-in.no-acc' | translate}}</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget eros dapibus, ultricies tellus vitae, consectetur tortor. Etiam rutrum placerat
           </p>
-          <a class="btn" routerLink="/register">Create an account</a>
+          <a class="btn" routerLink="/register">{{'sign-in.create-acc' | translate}}</a>
         </div>
       </div>
       <div class="col-right">
         <div class="login-form">
-          <h2>Sing In</h2>
+          <h2>{{'sign-in.sign-in' | translate}}</h2>
           <form (submit)="onLogin()" [formGroup]="form">
             <p>
-              <input type="email" email formControlName="email" name="email" placeholder="Email">
+              <input type="email" email formControlName="email" name="email" placeholder="{{'sign-in.email' | translate}}">
             </p>
             <p>
-              <input type="password" formControlName="password" name="password" placeholder="Password">
+              <input type="password" formControlName="password" name="password" placeholder="{{'sign-in.pass' | translate}}">
             </p>
             <p>
-              <input class="btn" type="submit" value="Sing In" />
+              <input class="btn" type="submit" value="{{'sign-in.sign-in' | translate}}" />
             </p>
           </form>
           <div *ngIf="error">
             <p>{{error}}</p>
           </div>
           <small *ngIf="!form.valid && form.get('password').touched && form.get('email').touched">
-            Username or password is incorrect
+            {{'errors.err-username-password' | translate}}
           </small>
         </div>
       </div>

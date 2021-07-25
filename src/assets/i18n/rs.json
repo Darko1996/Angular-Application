@@ -1,0 +1,70 @@
+{
+  "navigation": {
+    "event-viewer": "Pregled Događaja",
+    "home": "Početna",
+    "events": "Događaji",
+    "add-event": "Dodaj Događaj",
+    "sign-in": "Prijavite se",
+    "sign-out": "Odjavite se"
+  },
+  "home": {
+    "home-page": "Početna stranica",
+    "sign-in-whole-app": "Prijavite se da bi videli celu aplikaciju."
+  },
+  "events": {
+    "number": "br.",
+    "name": "Ime",
+    "date": "Datum",
+    "desc": "Opis",
+    "edit": "Uredite",
+    "del": "Izbrišite"
+  },
+  "add-event": {
+    "add-new-event": "Dodajte novi događaj",
+    "name": "Ime",
+    "choose-date": "Izaberite datum",
+    "desc": "Opis",
+    "add-event": "Dodaj Događaj"
+  },
+  "edit-event": {
+    "edit-event": "Uredite događaj",
+    "save": "Zapamtite"
+  },
+  "sign-in": {
+    "sign-in": "Prijavite se",
+    "no-acc": "Nemate Nalog?",
+    "email": "Email",
+    "pass": "Šifra",
+    "create-acc": "Kreirajte Nalog"
+  },
+  "sign-up": {
+    "sign-up": "Kreirajte Nalog",
+    "have-acc": "Imate nalog?",
+    "first-name": "Ime",
+    "last-name": "Prezime",
+    "username": "Korisničko ime",
+    "email": "Email",
+    "phone": "Telefon",
+    "password": "Šifra"
+  },
+  "errors": {
+    "err-username-password": "Korisničko ime ili sifra su neispravni!",
+    "err-first-name": "Unesite ime!",
+    "err-last-name": "Unesite prezime!",
+    "err-username": "Unesite korisničko ime!",
+    "err-email": "Unesite Email!",
+    "err-phone": "Unesite broj telefona!",
+    "err-pass": "Šifra mora da ima najmanje 6 cifara!"
+  },
+  "buttons": {
+    "yes": "Da",
+    "no": "Ne",
+    "cancel": "Otkaži",
+    "submit": "Submituj",
+    "save": "Zapamti"
+  },
+  "dialog": {
+    "save-event": "Uspešno ste zapamtili događaj!!",
+    "add-event": "Uspešno ste dodali događaj!"
+  }
+}
