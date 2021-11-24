@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {slideIn} from '../animations';
 import {EventService} from '../services/event.service';
 import {finalize, map, takeUntil} from 'rxjs/operators';
@@ -11,6 +11,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {SharedDialogComponent} from '../shared/shared-dialog/shared-dialog.component';
 import {Dialog, DialogMode} from '../models/Dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-events',
@@ -18,13 +19,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./events.component.scss'],
   animations: [slideIn]
 })
-export class EventsComponent implements OnInit, OnDestroy {
-  events: Event[] = [];
+export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
   event: Event;
   isLoading = false;
   private onDestroy = new Subject();
-  displayedColumns: string[] = ['position', 'name', 'date', 'description', 'edit', 'delete'];
-  dataSource: any;
+  displayedColumns: Array<string> = ['position', 'name', 'date', 'description', 'edit', 'delete'];
+  dataSource: MatTableDataSource<any>;
 
   constructor(public http: HttpClient,
               public eventService: EventService,
@@ -33,6 +33,10 @@ export class EventsComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
     this.executeLoad();
   }
 
@@ -41,18 +45,10 @@ export class EventsComponent implements OnInit, OnDestroy {
   }
 
   executeLoad() {
-    this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true), map(responseData => {
-      const eventsArray = [];
-      for (const key in responseData) {
-        if (responseData.hasOwnProperty(key)) {
-          eventsArray.push({...responseData[key], id: key});
-        }
-      }
-      return eventsArray;
-    })).subscribe(data => {
-      this.events = data;
-      this.dataSource = new MatTableDataSource(this.events);
-      console.log('events', this.events);
+    this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      console.log('dataSource', this.dataSource);
+
     }, err => {
       console.log('error', err);
     });

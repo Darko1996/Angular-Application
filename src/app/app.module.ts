@@ -20,6 +20,9 @@ import {SharedLanguageMenuComponent} from './shared/shared-language-menu/shared-
 import {LanguangeInterceptor} from './interceptors/languange.interceptor';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {environment} from '../environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,6 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

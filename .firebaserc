@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crud-app-f7ae8": {
+      "hosting": {
+        "angular-test-app": [
+          "crud-app-f7ae8"
+        ]
+      }
+    }
+  }
+}
