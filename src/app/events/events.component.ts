@@ -20,12 +20,12 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./events.component.scss'],
   animations: [slideIn]
 })
-export class EventsComponent implements OnInit, OnDestroy {
+export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
   event: Event;
   isLoading = false;
   private onDestroy = new Subject();
   displayedColumns: Array<string> = ['position', 'name', 'date', 'description', 'edit', 'delete'];
-  dataSource: Event[];
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -36,6 +36,10 @@ export class EventsComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
     this.executeLoad();
   }
 
@@ -45,8 +49,8 @@ export class EventsComponent implements OnInit, OnDestroy {
 
   executeLoad(): void {
     this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe(data => {
-      this.dataSource = data;
-      // this.dataSource.sort = this.sort;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
       console.log('dataSource', this.dataSource);
 
     }, err => {
@@ -74,7 +78,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   applyFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    // this.dataSource.filter = filterValue;
+    this.dataSource.filter = filterValue;
   }
 
   openDialog(elem): void {
