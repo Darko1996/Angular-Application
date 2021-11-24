@@ -18,13 +18,17 @@ export class EventService {
 
   /*---- NPM RUN API for Mock data ---- */
 
-  createEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(EventService.ROOT_ENDPOINT + 'events.json', event);
-  }
+  // createEvent(event: Event): Observable<Event> {
+  //   return this.http.post<Event>(EventService.ROOT_ENDPOINT + 'events.json', event);
+  // }
 
   // getEvents(): Observable<Event[]> {
   //   return this.http.get<Event[]>(EventService.ROOT_ENDPOINT + 'events.json');
   // }
+
+  createEvent(event: Event): any {
+    return this.db.collection('events').add(event);
+  }
 
   getEvents(): Observable<Event[]> {
     return this.db.collection('events').snapshotChanges().pipe(map(docArray => {

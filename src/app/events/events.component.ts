@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {slideIn} from '../animations';
 import {EventService} from '../services/event.service';
 import {finalize, map, takeUntil} from 'rxjs/operators';
@@ -12,6 +12,7 @@ import {SharedDialogComponent} from '../shared/shared-dialog/shared-dialog.compo
 import {Dialog, DialogMode} from '../models/Dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observable} from 'rxjs/internal/Observable';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-events',
@@ -19,12 +20,14 @@ import {Observable} from 'rxjs/internal/Observable';
   styleUrls: ['./events.component.scss'],
   animations: [slideIn]
 })
-export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class EventsComponent implements OnInit, OnDestroy {
   event: Event;
   isLoading = false;
   private onDestroy = new Subject();
   displayedColumns: Array<string> = ['position', 'name', 'date', 'description', 'edit', 'delete'];
-  dataSource: MatTableDataSource<any>;
+  dataSource: Event[];
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public http: HttpClient,
               public eventService: EventService,
@@ -33,20 +36,17 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
     this.executeLoad();
   }
 
-  openSnackBar() {
+  openSnackBar(): void {
     this.snackBar.open('You successfully Deleted the Event', 'Close', {duration: 1500});
   }
 
-  executeLoad() {
+  executeLoad(): void {
     this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = data;
+      // this.dataSource.sort = this.sort;
       console.log('dataSource', this.dataSource);
 
     }, err => {
@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  editEvent(event: Event) {
+  editEvent(event: Event): void {
     this.router.navigate(['/edit-event', event.id], {queryParams: {id: event.id} });
   }
 
@@ -71,12 +71,13 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.onDestroy.complete();
   }
 
-  applyFilter(event) {
-    const filterValue = (event.target).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    // this.dataSource.filter = filterValue;
   }
 
-  openDialog(elem) {
+  openDialog(elem): void {
     this.event = elem;
     const dialog = new Dialog();
     dialog.data = elem;
