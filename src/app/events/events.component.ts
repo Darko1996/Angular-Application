@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {slideIn} from '../animations';
 import {EventService} from '../services/event.service';
-import {finalize, map, takeUntil} from 'rxjs/operators';
+import {finalize, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
 import {Event} from '../models/Event';
 import {Router} from '@angular/router';
@@ -11,7 +11,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {SharedDialogComponent} from '../shared/shared-dialog/shared-dialog.component';
 import {Dialog, DialogMode} from '../models/Dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Observable} from 'rxjs/internal/Observable';
 import {MatSort} from '@angular/material/sort';
 
 @Component({
@@ -20,7 +19,7 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./events.component.scss'],
   animations: [slideIn]
 })
-export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class EventsComponent implements OnInit, OnDestroy {
   event: Event;
   isLoading = false;
   private onDestroy = new Subject();
@@ -36,10 +35,6 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
     this.executeLoad();
   }
 
@@ -48,11 +43,10 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   executeLoad(): void {
-    this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+    this.eventService.getEvents().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe((events: Event[]) => {
+      this.dataSource = new MatTableDataSource(events);
+      this.isLoading = true;
       this.dataSource.sort = this.sort;
-      console.log('dataSource', this.dataSource);
-
     }, err => {
       console.log('error', err);
     });
@@ -76,9 +70,7 @@ export class EventsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   applyFilter(filterValue: string): void {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   openDialog(elem): void {

@@ -13,25 +13,22 @@ import { map } from 'rxjs/operators';
 export class EventService {
   private static readonly ROOT_ENDPOINT = 'https://crud-app-f7ae8-default-rtdb.europe-west1.firebasedatabase.app/';
   authUser = new Subject<AuthUser>();
+  rootCollection = this.db.collection('events');
 
   constructor(private http: HttpClient, private db: AngularFirestore) { }
 
   /*---- NPM RUN API for Mock data ---- */
 
-  // createEvent(event: Event): Observable<Event> {
-  //   return this.http.post<Event>(EventService.ROOT_ENDPOINT + 'events.json', event);
-  // }
-
   // getEvents(): Observable<Event[]> {
   //   return this.http.get<Event[]>(EventService.ROOT_ENDPOINT + 'events.json');
   // }
 
-  createEvent(event: Event): any {
-    return this.db.collection('events').add(event);
-  }
+  // createEvent(event: Event): Observable<Event> {
+  //   return this.http.post<Event>(EventService.ROOT_ENDPOINT + 'events.json', event);
+  // }
 
   getEvents(): Observable<Event[]> {
-    return this.db.collection('events').snapshotChanges().pipe(map(docArray => {
+    return this.rootCollection.snapshotChanges().pipe(map(docArray => {
       return docArray.map((doc: any) => {
         return {
           id: doc.payload.doc.id,
@@ -44,6 +41,10 @@ export class EventService {
         };
       });
     }));
+  }
+
+  createEvent(event: Event): any {
+    return this.rootCollection.add(event);
   }
 
   getEventById(id: string): Observable<Event> {
