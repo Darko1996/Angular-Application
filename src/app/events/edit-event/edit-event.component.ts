@@ -32,26 +32,23 @@ export class EditEventComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initForm();
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe(params => {
-      this.eventService.getEventById(params.id).pipe(takeUntil(this.onDestroy)).subscribe(data => {
-        this.event = data;
-        this.eventId = params.id;
-        this.updateForm();
-      }, err => {
-        console.log(err);
-      });
+      this.event = this.eventService.getEventById(params.id);
+      console.log('-->', this.event);
+      this.eventId = params.id;
+      this.updateForm();
     });
   }
 
-  openSnackBar() {
+  openSnackBar(): void  {
     this.snackBar.open(this.translate.instant('dialog.save-event'), 'Close', {duration: 1500});
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void  {
     this.onDestroy.next();
     this.onDestroy.complete();
   }
 
-  initForm() {
+  initForm(): void {
     this.form = new FormGroup({
       name: new FormControl(null, {validators: Validators.required}),
       date: new FormControl(null, {validators: Validators.required}),
@@ -59,29 +56,28 @@ export class EditEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateForm() {
+  updateForm(): void {
     this.form.patchValue({
-      name: this.event.name,
-      date: new Date(this.event.date),
-      desc: this.event.description,
-      id: this.event.id
+      name: this.event?.name,
+      date: new Date(this.event?.date),
+      desc: this.event?.description,
+      id: this.event?.id
     });
   }
 
-  updateEvent() {
+  updateEvent(): void  {
     this.event = new Event();
     this.event = {
-      name: this.form.value.name,
-      date: moment(this.form.value.date).format('L'),
-      description: this.form.value.desc,
+      name: this.form.value?.name,
+      date: moment(this.form.value?.date).format('L'),
+      description: this.form.value?.desc,
       id: this.eventId
     };
 
-    this.eventService.updateEvent(this.event).pipe(takeUntil(this.onDestroy), finalize(() => this.openSnackBar())).subscribe(data => {
-      this.router.navigate(['/events']);
-    }, err => {
-      console.log(err);
-    });
+    this.eventService.updateEvent(this.event);
+
+    this.openSnackBar();
+    this.router.navigate(['/events']);
   }
 
 }

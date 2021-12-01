@@ -57,11 +57,9 @@ export class EventsComponent implements OnInit, OnDestroy {
   }
 
   confirm(): void {
-    this.eventService.deleteEvent(this.event.id).pipe(takeUntil(this.onDestroy), finalize(() => this.openSnackBar())).subscribe(data => {
-      this.executeLoad();
-    }, err => {
-      console.log(err);
-    });
+    this.eventService.deleteEvent(this.event.id);
+    // this.executeLoad();
+    this.openSnackBar();
   }
 
   ngOnDestroy(): void {
@@ -81,7 +79,6 @@ export class EventsComponent implements OnInit, OnDestroy {
     dialog.title = 'Confirmation Delete';
     dialog.content = 'Are you sure you want to delete this Event?';
 
-    console.log('dialog', dialog );
     if (dialog) {
       const dialogRef = this.dialog.open(SharedDialogComponent, {data: dialog, width: dialog.width});
       dialogRef.afterClosed().subscribe(result => {

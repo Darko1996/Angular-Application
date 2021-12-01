@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
 import {Event} from '../models/Event';
-import {Subject} from 'rxjs/internal/Subject';
-import {AuthUser} from '../models/Auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
@@ -11,24 +8,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class EventService {
-  private static readonly ROOT_ENDPOINT = 'https://crud-app-f7ae8-default-rtdb.europe-west1.firebasedatabase.app/';
-  authUser = new Subject<AuthUser>();
-  rootCollection = this.db.collection('events');
+  private static readonly ROOT_ENDPOINT = 'events';
 
-  constructor(private http: HttpClient, private db: AngularFirestore) { }
-
-  /*---- NPM RUN API for Mock data ---- */
-
-  // getEvents(): Observable<Event[]> {
-  //   return this.http.get<Event[]>(EventService.ROOT_ENDPOINT + 'events.json');
-  // }
-
-  // createEvent(event: Event): Observable<Event> {
-  //   return this.http.post<Event>(EventService.ROOT_ENDPOINT + 'events.json', event);
-  // }
+  constructor(private db: AngularFirestore) { }
 
   getEvents(): Observable<Event[]> {
-    return this.rootCollection.snapshotChanges().pipe(map(docArray => {
+    return this.db.collection(EventService.ROOT_ENDPOINT).snapshotChanges().pipe(map(docArray => {
       return docArray.map((doc: any) => {
         return {
           id: doc.payload.doc.id,
@@ -44,18 +29,18 @@ export class EventService {
   }
 
   createEvent(event: Event): any {
-    return this.rootCollection.add(event);
+    return this.db.collection(EventService.ROOT_ENDPOINT).add(event);
   }
 
-  getEventById(id: string): Observable<Event> {
-    return this.http.get<Event>(EventService.ROOT_ENDPOINT + 'events/' + id + '.json');
+  getEventById(id: string): any {
+    return this.db.doc(EventService.ROOT_ENDPOINT + '/' + id).valueChanges();
   }
 
-  updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(EventService.ROOT_ENDPOINT + 'events/' + event.id + '.json', event);
+  updateEvent(event: Event): any {
+    return this.db.doc(EventService.ROOT_ENDPOINT + '/' + event.id).set(event);
   }
 
-  deleteEvent(id: string): Observable<Event> {
-    return this.http.delete<Event>(EventService.ROOT_ENDPOINT + 'events/' + id + '.json');
+  deleteEvent(id: string): any {
+    return this.db.doc(EventService.ROOT_ENDPOINT + '/' + id).delete();
   }
 }
