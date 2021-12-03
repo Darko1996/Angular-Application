@@ -33,7 +33,7 @@ export class EventService {
   }
 
   getEventById(id: string): any {
-    return this.db.doc(EventService.ROOT_ENDPOINT + '/' + id).valueChanges();
+    return this.db.collection(EventService.ROOT_ENDPOINT).doc(id).ref.get().then((doc) => doc.data());
   }
 
   updateEvent(event: Event): any {

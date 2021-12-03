@@ -17,11 +17,11 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>{{'add-event.desc' | translate}}</mat-label>
-          <textarea matInput type="textarea" formControlName="desc" name="desc"></textarea>
+          <textarea matInput type="textarea" formControlName="description" name="description"></textarea>
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button [disabled]="!form.valid || !form.controls['name'].touched && !form.controls['date'].touched && !form.controls['desc'].touched" color="accent" type="submit" mat-raised-button>Save</button>
+        <button [disabled]="checkIfDataChange()" color="accent" type="submit" mat-raised-button>Save</button>
       </mat-card-actions>
     </mat-card>
   </form>

@@ -1,33 +1,33 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/internal/Subject';
 import {AuthResponseData, AuthUser} from '../models/Auth';
 import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private static readonly ROOT_ENDPOINT = 'AIzaSyAuCLLboAZuO_yndljGGYilj4K4Ft2ow30';
+  private static readonly ROOT_ENDPOINT = environment.firebaseConfig.apiKey;
   authUser = new BehaviorSubject<AuthUser>(null);
   private tokenExpirationTimer: any;
 
   constructor(private router: Router, public http: HttpClient) {}
 
-  login(user) {
+  login(user): any {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
       + AuthService.ROOT_ENDPOINT, {
       email: user.email,
       password: user.password,
       returnSecureToken: true
-    }).pipe(catchError(this.handleError), tap(resData => {
+    }).pipe(catchError(this.handleError), tap((resData: any) => {
       this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
     }));
   }
 
-  register(user) {
+  register(user): any {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
       + AuthService.ROOT_ENDPOINT, {
       firstName: user.firstName,
@@ -37,12 +37,12 @@ export class AuthService {
       phone: user.phone,
       password: user.password,
       returnSecureToken: true
-    }).pipe(catchError(this.handleError), tap(resData => {
+    }).pipe(catchError(this.handleError), tap((resData: any) => {
       this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
     }));
   }
 
-  handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
+  handleAuthentication(email: string, userId: string, token: string, expiresIn: number): void {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const authUser = new AuthUser(
       email,
@@ -54,7 +54,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(authUser));
   }
 
-  private handleError(errorRes: HttpErrorResponse) {
+  private handleError(errorRes: HttpErrorResponse): any {
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
@@ -73,7 +73,7 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  logout() {
+  logout(): void {
     this.authUser.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['/']);
@@ -83,13 +83,13 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
-  autoLogout(expirationDuration: number) {
+  autoLogout(expirationDuration: number): void {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
     }, expirationDuration);
   }
 
-  autoLogin() {
+  autoLogin(): void {
     const userData: {
       email: string,
       id: string,

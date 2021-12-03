@@ -10,6 +10,7 @@ import {EventService} from '../../services/event.service';
 import moment from 'moment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from '@ngx-translate/core';
+import {isEqual, cloneDeep} from 'lodash';
 
 @Component({
   selector: 'app-edit-event',
@@ -20,6 +21,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class EditEventComponent implements OnInit, OnDestroy {
   form: FormGroup;
   event: Event;
+  eventCopy = new Event();
   onDestroy = new Subject();
   eventId: string;
 
@@ -32,11 +34,21 @@ export class EditEventComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initForm();
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe(params => {
-      this.event = this.eventService.getEventById(params.id);
-      console.log('-->', this.event);
-      this.eventId = params.id;
-      this.updateForm();
+      this.eventService.getEventById(params.id).then((event: Event) => {
+        this.event = event;
+        this.eventId = params.id;
+        this.updateForm(event);
+      });
     });
+  }
+
+  checkIfDataChange(): boolean {
+    this.form.value.date = moment(this.form.value?.date).format('L');
+    return this.equals(this.form.value, this.eventCopy);
+  }
+
+  protected equals(a: any, b: any): boolean {
+    return isEqual(a, b);
   }
 
   openSnackBar(): void  {
@@ -52,17 +64,22 @@ export class EditEventComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       name: new FormControl(null, {validators: Validators.required}),
       date: new FormControl(null, {validators: Validators.required}),
-      desc: new FormControl(null, {validators: Validators.required}),
+      description: new FormControl(null, {validators: Validators.required}),
     });
   }
 
-  updateForm(): void {
+  updateForm(event: Event): void {
     this.form.patchValue({
-      name: this.event?.name,
-      date: new Date(this.event?.date),
-      desc: this.event?.description,
-      id: this.event?.id
+      name: event?.name,
+      date: new Date(event?.date),
+      description: event?.description,
+      id: event?.id
     });
+
+    // Format cloned event date for validation button
+    const clonedEvent = this.form.value;
+    clonedEvent.date = moment(this.form.value?.date).format('L');
+    this.eventCopy = cloneDeep(clonedEvent);
   }
 
   updateEvent(): void  {
@@ -70,7 +87,7 @@ export class EditEventComponent implements OnInit, OnDestroy {
     this.event = {
       name: this.form.value?.name,
       date: moment(this.form.value?.date).format('L'),
-      description: this.form.value?.desc,
+      description: this.form.value?.description,
       id: this.eventId
     };
 
@@ -79,5 +96,4 @@ export class EditEventComponent implements OnInit, OnDestroy {
     this.openSnackBar();
     this.router.navigate(['/events']);
   }
-
 }
