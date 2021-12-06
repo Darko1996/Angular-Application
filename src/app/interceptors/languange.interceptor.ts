@@ -3,17 +3,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpHeaders
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {LocalStorageService} from '../services/angular-universal.service';
 
 @Injectable()
 export class LanguangeInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private localStorageService: LocalStorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const lang = localStorage.getItem('lang') || 'en';
+    const lang = this.localStorageService.getItem('lang') || 'en';
     request = request.clone({
       setHeaders: {
         'Accept-language': lang

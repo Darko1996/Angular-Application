@@ -43,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedLanguageMenuComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     RouterModule,
     FormsModule,

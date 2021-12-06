@@ -5,6 +5,7 @@ import {AuthResponseData, AuthUser} from '../models/Auth';
 import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {LocalStorageService} from './angular-universal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   authUser = new BehaviorSubject<AuthUser>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private router: Router, public http: HttpClient) {}
+  constructor(private router: Router, public http: HttpClient, private localStorageService: LocalStorageService) {}
 
   login(user): any {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
@@ -51,7 +52,7 @@ export class AuthService {
       expirationDate);
     this.authUser.next(authUser);
     this.autoLogout(expiresIn * 1000);
-    localStorage.setItem('userData', JSON.stringify(authUser));
+    this.localStorageService.setItem('userData', JSON.stringify(authUser));
   }
 
   private handleError(errorRes: HttpErrorResponse): any {
@@ -75,7 +76,7 @@ export class AuthService {
 
   logout(): void {
     this.authUser.next(null);
-    localStorage.removeItem('userData');
+    this.localStorageService.removeItem('userData');
     this.router.navigate(['/']);
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
@@ -95,7 +96,7 @@ export class AuthService {
       id: string,
       _token: string,
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
+    } = JSON.parse(this.localStorageService.getItem('userData'));
     if (!userData) {
       return;
     }

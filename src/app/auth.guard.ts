@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
       return !!user;
     }), tap(isAuth => {
       if (!isAuth) {
-        alert('You have to login to see this page.');
+        // alert('You have to login to see this page.');
         this.router.navigate(['/login']);
       }
     })
