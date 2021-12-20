@@ -13,7 +13,8 @@
     <p>{{'home.sign-in-whole-app' | translate}}</p>
     <div class="buttons-con">
       <div class="action-link-wrap">
-        <a routerLink="/login" class="link-button"><button mat-raised-button color="primary">{{'sign-in.sign-in' | translate}}</button></a>
+        <a *ngIf="!userIsAuthenticated" routerLink="/login" class="link-button"><button mat-raised-button color="primary">{{'sign-in.sign-in' | translate}}</button></a>
+        <a *ngIf="userIsAuthenticated" class="link-button"><button mat-raised-button color="primary">{{'navigation.sign-out' | translate}}</button></a>
       </div>
     </div>
   </div>

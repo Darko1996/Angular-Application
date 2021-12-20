@@ -1,7 +1,7 @@
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, TransferState} from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,8 +23,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
+import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.loader';
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
@@ -55,8 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        useFactory: translateBrowserLoaderFactory,
+        deps: [HttpClient, TransferState]
       }
     })
   ],
@@ -64,7 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LanguangeInterceptor, multi: true},
-    HttpClient
+    HttpClient,
+    TransferState
   ],
   bootstrap: [AppComponent]
 })

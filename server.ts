@@ -12,7 +12,7 @@ import {environment} from './src/environments/environment';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const websiteFileLocation = environment.production ? 'browser' : 'dist/functions/browser';
+  const websiteFileLocation = environment.production ? 'browser' : 'dist/angular-test-app/browser';
   const distFolder = join(process.cwd(), websiteFileLocation);
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
