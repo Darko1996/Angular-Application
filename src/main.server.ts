@@ -4,6 +4,10 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+  // Remove all console logs
+  if (window) {
+    window.console.log = () => {};
+  }
 }
 
 export { AppServerModule } from './app/app.server.module';
