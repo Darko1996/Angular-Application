@@ -26,11 +26,11 @@ export class SharedLanguageMenuComponent implements OnInit {
     this.translateService.setDefaultLang('en');
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.currentLanguage = this.getCurrentLanguageData(this.translateService.currentLang);
   }
 
-  toggleAvailable() {
+  toggleAvailable(): void {
     this.showAvailable = !this.showAvailable;
   }
 
@@ -38,7 +38,7 @@ export class SharedLanguageMenuComponent implements OnInit {
     return this.languages.find(l => l.locale === (currentLanguage || 'en'));
   }
 
-  select(language: string) {
+  select(language: string): void {
     this.currentLanguage = this.getCurrentLanguageData(language);
     this.toggleAvailable();
     this.translateService.use(language);
