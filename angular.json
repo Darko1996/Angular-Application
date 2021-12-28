@@ -157,6 +157,11 @@
             "production": {
               "browserTarget": "angular-test-app:build:production",
               "serverTarget": "angular-test-app:server:production"
+            },
+            "development": {
+              "browserTarget": "angular-test-app:build",
+              "serverTarget": "angular-test-app:server",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
