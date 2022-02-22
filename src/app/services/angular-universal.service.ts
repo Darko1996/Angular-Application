@@ -52,21 +52,20 @@ export class LocalStorageService {
 }
 
 
-@Injectable({ providedIn: 'root' })
-
-export class WindowService {
-
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-    scrollTo(x: number, y: number): void {
-        if (isPlatformBrowser(this.platformId)) {
-            window.scrollTo(x, y);
-        }
-    }
-
-    open(url?: string, target?: string, feature?: string, replace?: boolean): void {
-        if (isPlatformBrowser(this.platformId)) {
-            window.open(url, target, feature, replace);
-        }
-    }
-}
+// @Injectable({ providedIn: 'root' })
+//
+// export class WindowService {
+//     constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+//
+//     scrollTo(x: number, y: number): void {
+//         if (isPlatformBrowser(this.platformId)) {
+//             window.scrollTo(x, y);
+//         }
+//     }
+//
+//     open(url?: string, target?: string, feature?: string, replace?: boolean): void {
+//         if (isPlatformBrowser(this.platformId)) {
+//             window.open(url, target, feature, replace);
+//         }
+//     }
+// }

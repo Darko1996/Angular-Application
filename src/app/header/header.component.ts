@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from './../services/auth.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -12,13 +13,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private onDestroy = new Subject();
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private titlePage: Title) { }
 
   ngOnInit(): void {
     this.authService.authUser.pipe(takeUntil(this.onDestroy)).subscribe(data => {
       this.userIsAuthenticated = !!data;
       console.log('userIsAuthenticated', this.userIsAuthenticated);
     });
+  }
+
+  setPageTitle(title: string): void {
+    this.titlePage.setTitle('Angular App | ' + title);
   }
 
   signOut(): void {

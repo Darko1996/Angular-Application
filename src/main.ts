@@ -7,9 +7,9 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
   // Remove all console logs
-  if (window) {
-    window.console.log = () => {};
-  }
+  // if (window) {
+  //   window.console.log = () => {};
+  // }
 }
 document.addEventListener('DOMContentLoaded', () => {
  platformBrowserDynamic().bootstrapModule(AppModule)
