@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-test-app": {
+    "angular-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-test-app/browser",
+            "outputPath": "dist/angular-app/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,19 +63,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-test-app:build",
+            "browserTarget": "angular-app:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-test-app:build:production"
+              "browserTarget": "angular-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-test-app:build"
+            "browserTarget": "angular-app:build"
           }
         },
         "test": {
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-test-app:serve"
+            "devServerTarget": "angular-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-test-app:serve:production"
+              "devServerTarget": "angular-app:serve:production"
             }
           }
         },
@@ -129,7 +129,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-test-app/server",
+            "outputPath": "dist/angular-app/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
@@ -150,17 +150,17 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "angular-test-app:build",
-            "serverTarget": "angular-test-app:server"
+            "browserTarget": "angular-app:build",
+            "serverTarget": "angular-app:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-test-app:build:production",
-              "serverTarget": "angular-test-app:server:production"
+              "browserTarget": "angular-app:build:production",
+              "serverTarget": "angular-app:server:production"
             },
             "development": {
-              "browserTarget": "angular-test-app:build",
-              "serverTarget": "angular-test-app:server",
+              "browserTarget": "angular-app:build",
+              "serverTarget": "angular-app:server",
               "proxyConfig": "src/proxy.conf.json"
             }
           }
@@ -168,8 +168,8 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "angular-test-app:build:production",
-            "serverTarget": "angular-test-app:server:production",
+            "browserTarget": "angular-app:build:production",
+            "serverTarget": "angular-app:server:production",
             "routes": [
               "/"
             ]
@@ -181,5 +181,5 @@
       }
     }
   },
-  "defaultProject": "angular-test-app"
+  "defaultProject": "angular-app"
 }

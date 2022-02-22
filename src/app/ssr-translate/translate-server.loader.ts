@@ -20,7 +20,7 @@ export class TranslateServerLoader implements TranslateLoader {
       const assetsFolder = join(
         process.cwd(),
         'dist',
-        'angular-test-app', // Your project name here
+        'angular-app', // Your project name here
         'browser',
         'assets',
         this.prefix

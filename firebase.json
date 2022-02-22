@@ -1,8 +1,8 @@
 {
   "hosting": [
     {
-      "target": "angular-test-app",
-      "public": "dist/angular-test-app",
+      "target": "angular-app",
+      "public": "dist/angular-app",
       "ignore": [
         "**/.*"
       ],

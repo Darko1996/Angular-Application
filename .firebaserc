@@ -2,7 +2,7 @@
   "targets": {
     "crud-app-f7ae8": {
       "hosting": {
-        "angular-test-app": [
+        "angular-app": [
           "crud-app-f7ae8"
         ]
       }

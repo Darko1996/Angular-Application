@@ -5,8 +5,8 @@ FROM node:14-slim
 COPY . .
 
 ## Start the application
-CMD ["node", "dist/angular-test-app/server/main.js"]
+CMD ["node", "dist/angular-app/server/main.js"]
 
 ## Docker startup
-## docker build -t angular-test-app .
-## docker run -p 4000:4000 angular-test-app
+## docker build -t angular-app .
+## docker run -p 4000:4000 angular-app

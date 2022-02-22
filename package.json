@@ -1,5 +1,5 @@
 {
-  "name": "angular-test-app",
+  "name": "angular-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,10 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "api": "json-server api/db.json --routes api/routes.json --no-cors=true",
-    "dev:ssr": "ng run angular-test-app:serve-ssr",
-    "serve:ssr": "node dist/angular-test-app/server/main.js",
-    "build:ssr": "ng build --prod && ng run angular-test-app:server:production",
-    "prerender": "ng run angular-test-app:prerender"
+    "dev:ssr": "ng run angular-app:serve-ssr",
+    "serve:ssr": "node dist/angular-app/server/main.js",
+    "build:ssr": "ng build --prod && ng run angular-app:server:production",
+    "prerender": "ng run angular-app:prerender"
   },
   "private": true,
   "dependencies": {
