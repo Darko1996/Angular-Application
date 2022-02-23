@@ -1,5 +1,5 @@
 <section [@slideIn] *ngIf="isLoading">
-  <h1 class="text-center">{{'navigation.events' | translate}}</h1>
+  <h1 class="text-center">{{'navigation.products' | translate}}</h1>
 
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
@@ -10,38 +10,38 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> {{'events.number' | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef> {{'products.number' | translate}} </th>
       <td mat-cell *matCellDef="let element; index as i "> {{i + 1}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> {{'events.name' | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef> {{'products.name' | translate}} </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> {{'events.date' | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef> {{'products.date' | translate}} </th>
       <td mat-cell *matCellDef="let element"> {{element.date}} </td>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> {{'events.desc' | translate}} </th>
+      <th mat-header-cell *matHeaderCellDef> {{'products.desc' | translate}} </th>
       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
     <!-- Edit Column -->
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element"> <button mat-button (click)="editEvent(element)">{{'events.edit' | translate}}</button> </td>
+      <td mat-cell *matCellDef="let element"> <button mat-button (click)="editProduct(element)">{{'products.edit' | translate}}</button> </td>
     </ng-container>
 
     <!-- Delete Column -->
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click)="openDialog(element)">{{'events.del' | translate}}</button> </td>
+      <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click)="openDialog(element)">{{'products.del' | translate}}</button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

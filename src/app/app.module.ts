@@ -9,11 +9,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
-import { EventsComponent } from './events/events.component';
-import { AddEventComponent } from './events/add-event/add-event.component';
+import { ProductsComponent} from './products/products.component';
+import { AddProductComponent} from './products/add-product/add-product.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { EditEventComponent } from './events/edit-event/edit-event.component';
-import {AuthInterceptor} from './interceptors/auth.interceptor';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { AuthInterceptor} from './interceptors/auth.interceptor';
 import {AngularMaterialModule} from './material.module';
 import {SharedDialogComponent} from './shared/shared-dialog/shared-dialog.component';
 import {SharedLanguageMenuComponent} from './shared/shared-language-menu/shared-language-menu.component';
@@ -34,12 +34,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    EventsComponent,
-    AddEventComponent,
+    ProductsComponent,
+    AddProductComponent,
     HomeComponent,
     FooterComponent,
     RegisterComponent,
-    EditEventComponent,
+    EditProductComponent,
     SharedDialogComponent,
     SharedLanguageMenuComponent
   ],

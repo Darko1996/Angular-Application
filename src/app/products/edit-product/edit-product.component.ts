@@ -1,32 +1,32 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Event} from '../../models/Event';
 import {slideIn} from '../../animations';
 import {ActivatedRoute, Router} from '@angular/router';
-import {finalize, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
-import {EventService} from '../../services/event.service';
 // @ts-ignore
 import moment from 'moment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from '@ngx-translate/core';
 import {isEqual, cloneDeep} from 'lodash';
+import {Product} from '../../models/Product';
+import {ProductService} from '../../services/product.service';
 
 @Component({
-  selector: 'app-edit-event',
-  templateUrl: './edit-event.component.html',
-  styleUrls: ['./edit-event.component.scss'],
+  selector: 'app-product',
+  templateUrl: './edit-product.component.html',
+  styleUrls: ['./edit-product.component.scss'],
   animations: [slideIn]
 })
-export class EditEventComponent implements OnInit, OnDestroy {
+export class EditProductComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  event: Event;
-  eventCopy = new Event();
+  product: Product;
+  productCopy = new Product();
   onDestroy = new Subject();
-  eventId: string;
+  productId: string;
 
   constructor(public activatedRoute: ActivatedRoute,
-              public eventService: EventService,
+              public productService: ProductService,
               public router: Router,
               private snackBar: MatSnackBar,
               private translate: TranslateService) { }
@@ -34,17 +34,17 @@ export class EditEventComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initForm();
     this.activatedRoute.queryParams.pipe(takeUntil(this.onDestroy)).subscribe(params => {
-      this.eventService.getEventById(params.id).then((event: Event) => {
-        this.event = event;
-        this.eventId = params.id;
-        this.updateForm(event);
+      this.productService.getProductById(params.id).then((product: Product) => {
+        this.product = product;
+        this.productId = params.id;
+        this.updateForm(product);
       });
     });
   }
 
   checkIfDataChange(): boolean {
     this.form.value.date = moment(this.form.value?.date).format('L');
-    return this.equals(this.form.value, this.eventCopy);
+    return this.equals(this.form.value, this.productCopy);
   }
 
   protected equals(a: any, b: any): boolean {
@@ -52,7 +52,7 @@ export class EditEventComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar(): void  {
-    this.snackBar.open(this.translate.instant('dialog.save-event'), 'Close', {duration: 1500});
+    this.snackBar.open(this.translate.instant('dialog.save-product'), 'Close', {duration: 1500});
   }
 
   ngOnDestroy(): void  {
@@ -68,32 +68,32 @@ export class EditEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateForm(event: Event): void {
+  updateForm(product: Product): void {
     this.form.patchValue({
-      name: event?.name,
-      date: new Date(event?.date),
-      description: event?.description,
-      id: event?.id
+      name: product?.name,
+      date: new Date(product?.date),
+      description: product?.description,
+      id: product?.id
     });
 
-    // Format cloned event date for validation button
-    const clonedEvent = this.form.value;
-    clonedEvent.date = moment(this.form.value?.date).format('L');
-    this.eventCopy = cloneDeep(clonedEvent);
+    // Format cloned product date for validation button
+    const clonedproduct = this.form.value;
+    clonedproduct.date = moment(this.form.value?.date).format('L');
+    this.productCopy = cloneDeep(clonedproduct);
   }
 
-  updateEvent(): void  {
-    this.event = new Event();
-    this.event = {
+  updateProduct(): void  {
+    this.product = new Product();
+    this.product = {
       name: this.form.value?.name,
       date: moment(this.form.value?.date).format('L'),
       description: this.form.value?.description,
-      id: this.eventId
+      id: this.productId
     };
 
-    this.eventService.updateEvent(this.event);
+    this.productService.updateProduct(this.product);
 
     this.openSnackBar();
-    this.router.navigate(['/events']);
+    this.router.navigate(['/products']);
   }
 }

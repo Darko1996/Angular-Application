@@ -1,4 +1,4 @@
-export class Event {
+export class Product {
   name: string;
   date: any;
   description: string;

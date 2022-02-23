@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogin() {
+  onLogin(): void {
     this.user = new User();
     this.user.email = this.form.value.email;
     this.user.password = this.form.value.password;
@@ -37,14 +37,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         return;
     }
     this.authService.login(this.form.value).pipe(takeUntil(this.onDestroy)).subscribe(data => {
-      console.log('data', data);
-      this.router.navigate(['/events']);
+      this.router.navigate(['/products']);
     }, errorMessage => {
       this.error = errorMessage;
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.onDestroy.next();
     this.onDestroy.complete();
   }

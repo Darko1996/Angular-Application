@@ -3,6 +3,7 @@ import { AuthService } from './../services/auth.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
 import {Title} from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private onDestroy = new Subject();
 
-  constructor(public authService: AuthService, private titlePage: Title) { }
+  constructor(public authService: AuthService, private titlePage: Title, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.authService.authUser.pipe(takeUntil(this.onDestroy)).subscribe(data => {
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   setPageTitle(title: string): void {
-    this.titlePage.setTitle('Angular App | ' + title);
+    this.titlePage.setTitle('Angular App | ' + this.translate.instant('navigation.' + title));
   }
 
   signOut(): void {

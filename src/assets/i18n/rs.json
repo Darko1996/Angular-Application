@@ -1,9 +1,9 @@
 {
   "navigation": {
-    "event-viewer": "Pregled Događaja",
+    "product-viewer": "Pregled Proizvoda",
     "home": "Početna",
-    "events": "Događaji",
-    "add-event": "Dodaj Događaj",
+    "products": "Proizvodi",
+    "add-product": "Dodaj Proizvod",
     "sign-in": "Prijavite se",
     "sign-out": "Odjavite se"
   },
@@ -11,7 +11,7 @@
     "home-page": "Početna stranica",
     "sign-in-whole-app": "Prijavite se da bi videli celu aplikaciju."
   },
-  "events": {
+  "products": {
     "number": "br.",
     "name": "Ime",
     "date": "Datum",
@@ -19,15 +19,15 @@
     "edit": "Uredite",
     "del": "Izbrišite"
   },
-  "add-event": {
-    "add-new-event": "Dodajte novi događaj",
+  "add-product": {
+    "add-new-product": "Dodajte novi proizvod",
     "name": "Ime",
     "choose-date": "Izaberite datum",
     "desc": "Opis",
-    "add-event": "Dodaj Događaj"
+    "add-product": "Dodaj Proizvod"
   },
-  "edit-event": {
-    "edit-event": "Uredite događaj",
+  "edit-product": {
+    "edit-product": "Uredite proizvod",
     "save": "Zapamtite"
   },
   "sign-in": {
@@ -64,7 +64,10 @@
     "save": "Zapamti"
   },
   "dialog": {
-    "save-event": "Uspešno ste zapamtili događaj!!",
-    "add-event": "Uspešno ste dodali događaj!"
+    "save-product": "Uspešno ste zapamtili proizvod!",
+    "add-product": "Uspešno ste dodali proizvod!",
+    "delete-product": "Uspešno ste izbrisali proizvod!",
+    "delete-product-confirmation": "Da li ste sigurni da želite da izbrišete ovaj proizvod?",
+    "confirmation-delete-title": "Potvrdi brisanje"
   }
 }

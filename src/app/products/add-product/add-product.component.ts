@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { slideIn } from '../../animations';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Event} from '../../models/Event';
-import {EventService} from '../../services/event.service';
+import {Product} from '../../models/Product';
+import {ProductService} from '../../services/product.service';
 import {Router} from '@angular/router';
 // @ts-ignore
 import moment from 'moment';
@@ -10,16 +10,16 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-add-event',
-  templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.scss'],
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.scss'],
   animations: [slideIn]
 })
-export class AddEventComponent implements OnInit {
+export class AddProductComponent implements OnInit {
   form: FormGroup;
-  event: Event;
+  product: Product;
 
-  constructor(private eventService: EventService,
+  constructor(private productService: ProductService,
               public router: Router,
               private snackBar: MatSnackBar,
               private translate: TranslateService) { }
@@ -36,24 +36,20 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  openSnackBar(): void {
-    this.snackBar.open(this.translate.instant('dialog.add-event'), 'Close', {duration: 1500});
-  }
-
-  onAddEvent(): void {
+  onAddProduct(): void {
     if (!this.form.value) {
       return;
     }
 
-    this.event = new Event();
-    this.event = {
+    this.product = new Product();
+    this.product = {
       name: this.form.value.name,
       date: moment(this.form.value.date).format('L'),
       description: this.form.value.desc
     };
 
-    this.eventService.createEvent(this.event);
-    this.openSnackBar();
-    this.router.navigate(['/events']);
+    this.productService.createProduct(this.product);
+    this.snackBar.open(this.translate.instant('dialog.add-product'), 'Close', {duration: 1500});
+    this.router.navigate(['/products']);
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.autoLogin();
   }
 }
