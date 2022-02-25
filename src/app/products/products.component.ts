@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {slideIn} from '../animations';
 import {ProductService} from '../services/product.service';
-import {finalize, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
 import {Product} from '../models/Product';
 import {Router} from '@angular/router';
@@ -13,6 +13,7 @@ import {Dialog, DialogMode} from '../models/Dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSort} from '@angular/material/sort';
 import {TranslateService} from '@ngx-translate/core';
+import {SharedLoaderService} from '../services/shared-loader.service';
 
 @Component({
   selector: 'app-products',
@@ -22,7 +23,6 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   product: Product;
-  isLoading = false;
   private onDestroy = new Subject();
   displayedColumns: Array<string> = ['position', 'name', 'date', 'description', 'edit', 'delete'];
   dataSource: MatTableDataSource<any>;
@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
               public router: Router,
               public dialog: MatDialog,
               private snackBar: MatSnackBar,
+              private loader: SharedLoaderService,
               private translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -41,10 +42,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   executeLoad(): void {
-    this.productService.getProducts().pipe(takeUntil(this.onDestroy), finalize( () => this.isLoading = true)).subscribe((products: Product[]) => {
+    this.loader.showFullLoader();
+    this.productService.getProducts().pipe(takeUntil(this.onDestroy)).subscribe((products: Product[]) => {
       this.dataSource = new MatTableDataSource(products);
-      this.isLoading = true;
       this.dataSource.sort = this.sort;
+      this.loader.dismissLoader();
     }, err => {
       console.log('error', err);
     });

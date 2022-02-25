@@ -1,4 +1,4 @@
-<section [@slideIn] *ngIf="isLoading">
+<section [@slideIn]>
   <h1 class="text-center">{{'navigation.products' | translate}}</h1>
 
   <mat-form-field appearance="standard">
@@ -52,8 +52,6 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{dataSource.sort}}"</td>
     </tr>
   </table>
-
-  <mat-spinner style="margin: auto" *ngIf="!isLoading"></mat-spinner>
 </section>
 
 

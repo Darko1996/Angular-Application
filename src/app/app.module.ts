@@ -17,6 +17,7 @@ import { AuthInterceptor} from './interceptors/auth.interceptor';
 import {AngularMaterialModule} from './material.module';
 import {SharedDialogComponent} from './shared/shared-dialog/shared-dialog.component';
 import {SharedLanguageMenuComponent} from './shared/shared-language-menu/shared-language-menu.component';
+import {SharedLoaderComponent} from './shared/shared-loader/shared-loader.component';
 import {LanguangeInterceptor} from './interceptors/languange.interceptor';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -24,6 +25,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.loader';
+import {StoreModule} from '@ngrx/store';
+import {appReducer} from './ngrx/app.reducer';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -41,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     RegisterComponent,
     EditProductComponent,
     SharedDialogComponent,
-    SharedLanguageMenuComponent
+    SharedLanguageMenuComponent,
+    SharedLoaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -51,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HttpClientModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    StoreModule.forRoot({ui: appReducer}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     TranslateModule.forRoot({
@@ -59,7 +64,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory: translateBrowserLoaderFactory,
         deps: [HttpClient, TransferState]
       }
-    })
+    }),
+    StoreModule.forRoot({}, {})
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

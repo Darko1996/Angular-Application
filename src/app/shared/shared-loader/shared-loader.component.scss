@@ -1,0 +1,110 @@
+@import "../../../scss/colors";
+
+.loader-container {
+  width: 100%;
+  position: absolute;
+  z-index: 49999999; // Below the snackbar.
+  top:0;
+  left:0;
+}
+
+.full-container {
+  @extend .loader-container;
+  bottom: 0;
+  background: $color-primary;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 25px 0;
+
+  .close-loader {
+    align-self: flex-end;
+    padding-right: 25px;
+  }
+
+  .loader {
+    width: 60px;
+    height: 60px;
+  }
+
+  .subtext-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .main-text-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+  .title {
+    //font-family: $source-sans-pro;
+    color: $color-snow;
+    font-size: 1.5em;
+  }
+
+  .separator {
+    width: 50px;
+    margin: 1em;
+    height: 1px;
+    background: snow;
+  }
+
+  .main-text {
+    //font-family: $source-sans-pro;
+    color: $color-snow;
+    font-size: 1.1em;
+    text-align: center;
+  }
+
+  .sub-text {
+    //font-family: $source-sans-pro;
+    color: $color-snow;
+    font-size: 1em;
+  }
+}
+
+.bar-container {
+  @extend .loader-container;
+
+  .bar {
+    position: relative;
+    overflow-x: hidden;
+    height: 10px;
+
+    .line{
+      position:absolute;
+      opacity: 0.8;
+      background: $color-secondary;
+      width:150%;
+      height:10px;
+    }
+
+    .subline{
+      position:absolute;
+      background: $color-snow;
+      height:10px;
+    }
+    .inc{
+      animation: increase 2.5s infinite;
+    }
+    .dec{
+      animation: decrease 2.5s 1s infinite;
+    }
+
+    @keyframes increase {
+      from { left: -5%; width: 5%; }
+      to { left: 130%; width: 100%;}
+    }
+    @keyframes decrease {
+      from { left: -80%; width: 80%; }
+      to { left: 110%; width: 10%;}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div *ngIf="showFull" class="full-container">
+  <div class="close-loader clickable">
+    <img src="../../../assets/images/loader/icon-exit-white.svg" alt="Close Loader" (click)="closeLoader()">
+  </div>
+  <div class="subtext-container">
+    <p class="main-text">{{mainText}}</p>
+    <h2 class="title">{{'loader.in_progress' | translate}}</h2>
+  </div>
+  <img class="loader" src="../../../assets/images/loader/loader-circle.svg" alt="loader">
+  <div class="subtext-container">
+    <div class="separator"></div>
+    <p class="sub-text">{{'loader.please_wait' | translate}}</p>
+  </div>
+</div>
+
+<div *ngIf="showBar" class="bar-container">
+  <div class="bar">
+    <div class="line"></div>
+    <div class="subline inc"></div>
+    <div class="subline dec"></div>
+  </div>
+</div>

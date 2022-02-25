@@ -1,26 +1,33 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AuthService } from './../services/auth.service';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs/internal/Subject';
 import {Title} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
+import * as fromRoot from '../ngrx/app.reducer';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  userIsAuthenticated = false;
-  private onDestroy = new Subject();
+export class HeaderComponent implements OnInit {
+  userIsAuthenticated$: Observable<boolean>;
+  // userIsAuthenticated = false;
+  // private onDestroy = new Subject();
 
-  constructor(public authService: AuthService, private titlePage: Title, private translate: TranslateService) { }
+  constructor(
+    public authService: AuthService,
+    private store: Store<fromRoot.State>,
+    private titlePage: Title,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.authService.authUser.pipe(takeUntil(this.onDestroy)).subscribe(data => {
-      this.userIsAuthenticated = !!data;
-      console.log('userIsAuthenticated', this.userIsAuthenticated);
-    });
+    this.userIsAuthenticated$ = this.store.select(fromRoot.getIsAuth);
+
+    // this.authService.authUser.pipe(takeUntil(this.onDestroy)).subscribe(data => {
+    //   this.userIsAuthenticated = !!data;
+    // });
   }
 
   setPageTitle(title: string): void {
@@ -31,9 +38,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  ngOnDestroy(): void {
-    this.onDestroy.next();
-    this.onDestroy.complete();
-  }
+  // ngOnDestroy(): void {
+  //   this.onDestroy.next();
+  //   this.onDestroy.complete();
+  // }
 }
-
