@@ -5,6 +5,15 @@ export const SET_UNAUTHENTICATED = '[Auth] Set Unauthenticated';
 
 export class SetAuthenticated implements Action {
   readonly type = SET_AUTHENTICATED;
+
+  constructor(
+    public payload: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: Date
+  }
+  ) {}
 }
 
 export class SetUnauthenticated implements Action {

@@ -26,7 +26,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.loader';
 import {StoreModule} from '@ngrx/store';
-import {appReducer} from './ngrx/app.reducer';
+import {reducers} from './ngrx/app.reducer';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -55,7 +55,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HttpClientModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    StoreModule.forRoot({ui: appReducer}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     TranslateModule.forRoot({
@@ -65,7 +64,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient, TransferState]
       }
     }),
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot(reducers),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

@@ -6,13 +6,13 @@
       <div class="header-container">
         <div class="header-items-1">
           <a routerLink="/" (click)="setPageTitle('home')"><button mat-button>{{'navigation.home' | translate}}</button></a>
-          <a routerLink="/products" (click)="setPageTitle('products')" *ngIf="userIsAuthenticated$ | async"><button mat-button>{{'navigation.products' | translate}}</button></a>
-          <a routerLink="/add-product" (click)="setPageTitle('add-product')" *ngIf="userIsAuthenticated$ | async"><button mat-button>{{'navigation.add-product' | translate}}</button></a>
+          <a routerLink="/products" (click)="setPageTitle('products')" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.products' | translate}}</button></a>
+          <a routerLink="/add-product" (click)="setPageTitle('add-product')" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.add-product' | translate}}</button></a>
         </div>
 
         <div class="header-items-2">
-          <a routerLink="/login" (click)="setPageTitle('sign-in')" *ngIf="!(userIsAuthenticated$ | async)"><button mat-button>{{'navigation.sign-in' | translate}}</button></a>
-          <a routerLink="/" (click)="setPageTitle('home')" (click)="signOut()" *ngIf="userIsAuthenticated$ | async"><button mat-button>{{'navigation.sign-out' | translate}}</button></a>
+          <a routerLink="/login" (click)="setPageTitle('sign-in')" *ngIf="!(userIsAuthenticated)"><button mat-button>{{'navigation.sign-in' | translate}}</button></a>
+          <a routerLink="/" (click)="setPageTitle('home')" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-button>{{'navigation.sign-out' | translate}}</button></a>
           <app-shared-language-menu orientation="vertical"></app-shared-language-menu>
         </div>
       </div>
@@ -25,17 +25,17 @@
     <mat-menu #menu="matMenu">
       <a routerLink="/"><button mat-button>{{'navigation.home' | translate}}</button></a>
       <mat-divider></mat-divider>
-      <a routerLink="/products" *ngIf="userIsAuthenticated$ | async"><button mat-menu-item>{{'navigation.products' | translate}}</button></a>
+      <a routerLink="/products" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.products' | translate}}</button></a>
       <mat-divider></mat-divider>
-      <a routerLink="/add-product" *ngIf="userIsAuthenticated$ | async"><button mat-menu-item>{{'navigation.add-product' | translate}}</button></a>
+      <a routerLink="/add-product" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.add-product' | translate}}</button></a>
       <mat-divider></mat-divider>
-      <a routerLink="/login" *ngIf="!(userIsAuthenticated$ | async)">
+      <a routerLink="/login" *ngIf="!(userIsAuthenticated)">
         <button mat-menu-item>
           <mat-icon>login</mat-icon>
           <span>{{'navigation.sign-in' | translate}}</span>
         </button>
       </a>
-      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated$ | async"><button mat-menu-item>{{'navigation.sign-out' | translate}}</button></a>
+      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.sign-out' | translate}}</button></a>
       <app-shared-language-menu orientation="horizontal"></app-shared-language-menu>
     </mat-menu>
   </mat-toolbar>

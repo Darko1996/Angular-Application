@@ -7,7 +7,7 @@ import {BehaviorSubject, throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {LocalStorageService} from './angular-universal.service';
 import {Store} from '@ngrx/store';
-import * as fromRoot from '../ngrx/app.reducer';
+import * as fromApp from '../ngrx/app.reducer';
 import * as Auth from '../ngrx/actions/auth.actions';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private router: Router,
               private http: HttpClient,
-              private store: Store<fromRoot.State>,
+              private store: Store<fromApp.State>,
               private localStorageService: LocalStorageService) {}
 
   login(user): any {
@@ -49,12 +49,13 @@ export class AuthService {
 
   handleAuthentication(email: string, userId: string, token: string, expiresIn: number): void {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const authUser = new AuthUser(
-      email,
-      userId,
-      token,
-      expirationDate);
-    this.store.dispatch(new Auth.SetAuthenticated());
+    const authUser = new AuthUser(email, userId, token, expirationDate);
+    this.store.dispatch(new Auth.SetAuthenticated({
+      email: email,
+      id: userId,
+      _token: token,
+      _tokenExpirationDate: expirationDate
+    }));
     // this.authUser.next(authUser);
     this.autoLogout(expiresIn * 1000);
     this.localStorageService.setItem('userData', JSON.stringify(authUser));
@@ -108,7 +109,12 @@ export class AuthService {
     }
     const loadUser = new AuthUser(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
     if (loadUser.token) {
-      this.store.dispatch(new Auth.SetAuthenticated());
+      this.store.dispatch(new Auth.SetAuthenticated({
+        email: loadUser.email,
+        id: loadUser.id,
+        _token: loadUser.token,
+        _tokenExpirationDate: new Date(userData._tokenExpirationDate)
+      }));
       // this.authUser.next(loadUser);
       // @ts-ignore
       const expirationDuration = new Date(userData._tokenExpirationDate) - new Date().getTime();

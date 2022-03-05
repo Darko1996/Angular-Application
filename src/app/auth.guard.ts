@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Observable } from 'rxjs/internal/Observable';
 import {map, take, tap} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
-import * as fromRoot from './ngrx/app.reducer';
+import * as fromApp from './ngrx/app.reducer';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,15 +11,24 @@ export class AuthGuard implements CanActivate {
   constructor(
     // private authService: AuthService,
     private router: Router,
-    private store: Store<fromRoot.State>) {}
+    private store: Store<fromApp.State>) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    const isAuth = this.store.select(fromRoot.getIsAuth).pipe(take(1));
-    if (isAuth) {
-      return isAuth;
-    } else {
-      this.router.navigate(['/login']);
-    }
+    return this.store.select(fromApp.getAuthState).pipe(
+      take(1),
+      map( authState => {
+        return authState.user;
+      }),
+      map(user => {
+        const isAuth = !!user;
+        if (isAuth) {
+          return true;
+        } else {
+          return false;
+          this.router.navigate(['/login']);
+        }
+      }));
+
 
     // return this.authService.authUser.pipe(map(user => {
     //   return !!user;

@@ -3,7 +3,8 @@ import {Subject} from 'rxjs/internal/Subject';
 import {SharedLoaderService} from '../../services/shared-loader.service';
 import {TranslateService} from '@ngx-translate/core';
 import {takeUntil} from 'rxjs/operators';
-import {LoaderType} from '../../models/LoaderType';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../ngrx/app.reducer';
 
 @Component({
   selector: 'app-shared-loader',
@@ -13,7 +14,6 @@ import {LoaderType} from '../../models/LoaderType';
 export class SharedLoaderComponent implements OnDestroy {
 
   private onDestroy = new Subject();
-  private clickEvent;
   private clickHandler: any = this.preventClick.bind(this);
 
   showFull = false;
@@ -22,12 +22,14 @@ export class SharedLoaderComponent implements OnDestroy {
 
   constructor(private loaderService: SharedLoaderService,
               private renderer: Renderer2,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private store: Store<fromApp.State>) {
 
-    this.loaderService.showLoaderEvent$.pipe(takeUntil(this.onDestroy)).subscribe((value: LoaderType) => {
-      this.showFull = value.type === SharedLoaderService.FULL;
-      this.showBar = value.type === SharedLoaderService.BAR;
-      this.mainText = this.translate.instant(value.message ? value.message : 'loader.subtext');
+    // this.loaderService.showLoaderEvent$.pipe(takeUntil(this.onDestroy)).subscribe((value: LoaderType) => {
+    this.store.select(fromApp.getLoaderState).pipe(takeUntil(this.onDestroy)).subscribe((value: any) => {
+      this.showFull = value?.loader?.type === SharedLoaderService.FULL;
+      this.showBar = value?.loader?.type === SharedLoaderService.BAR;
+      this.mainText = this.translate.instant(value?.loader?.message ? value?.loader?.message : 'loader.subtext');
 
       // Prevent all click when bar loader is shown. Enable click again after 10sec.
       if (this.showBar) {
@@ -38,12 +40,12 @@ export class SharedLoaderComponent implements OnDestroy {
       }
     });
 
-    this.loaderService.dismissLoaderEvent$.pipe(takeUntil(this.onDestroy)).subscribe(_ => {
-      this.enableClick();
-      this.showFull = false;
-      this.showBar = false;
-      this.mainText = undefined;
-    });
+    // this.loaderService.dismissLoaderEvent$.pipe(takeUntil(this.onDestroy)).subscribe(_ => {
+    //   this.enableClick();
+    //   this.showFull = false;
+    //   this.showBar = false;
+    //   this.mainText = undefined;
+    // });
   }
 
   preventClick(e: MouseEvent): void {

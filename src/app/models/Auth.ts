@@ -8,10 +8,9 @@ export interface AuthResponseData {
 }
 
 export class AuthUser {
-  constructor(public email: string, public id: string, private _token: string, private _tokenExpirationDate: Date) {
-  }
+  constructor(public email: string, public id: string, public _token: string, public _tokenExpirationDate: Date) {}
 
-  get token(): string {
+  get token(): any {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
       return null;
     }
