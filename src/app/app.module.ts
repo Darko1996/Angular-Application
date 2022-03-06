@@ -26,6 +26,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.loader';
 import {StoreModule} from '@ngrx/store';
 import * as fromApp from './ngrx/app.reducer';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -67,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LanguangeInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LanguangeInterceptor, multi: true },
     HttpClient,
     TransferState
   ],
