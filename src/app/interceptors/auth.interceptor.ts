@@ -17,12 +17,13 @@ export class AuthInterceptor implements HttpInterceptor {
     private store: Store<fromApp.State>) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): any {
-    return this.store.select(fromApp.getAuthState).pipe(take(1),
+    return this.store.select(fromApp.getAuthState).pipe(
+      take(1),
       map( authState => {
+        console.log('->', authState);
         return authState.user;
       }),
       exhaustMap(user => {
-        console.log('->', user);
         if (!user) {
           return next.handle(request);
         }

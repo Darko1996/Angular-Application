@@ -13,7 +13,6 @@ import { ProductsComponent} from './products/products.component';
 import { AddProductComponent} from './products/add-product/add-product.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
-import { AuthInterceptor} from './interceptors/auth.interceptor';
 import {AngularMaterialModule} from './material.module';
 import {SharedDialogComponent} from './shared/shared-dialog/shared-dialog.component';
 import {SharedLanguageMenuComponent} from './shared/shared-language-menu/shared-language-menu.component';
@@ -21,12 +20,12 @@ import {SharedLoaderComponent} from './shared/shared-loader/shared-loader.compon
 import {LanguangeInterceptor} from './interceptors/languange.interceptor';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {environment} from '../environments/environment';
 import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.loader';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from './ngrx/app.reducer';
+import * as fromApp from './ngrx/app.reducer';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -57,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    StoreModule.forRoot(fromApp.reducers),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -64,11 +64,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient, TransferState]
       }
     }),
-    StoreModule.forRoot(reducers),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LanguangeInterceptor, multi: true},
     HttpClient,
     TransferState

@@ -1,10 +1,11 @@
-import {Component, OnDestroy, Renderer2} from '@angular/core';
+import {Component, Inject, OnDestroy, Renderer2} from '@angular/core';
 import {Subject} from 'rxjs/internal/Subject';
 import {SharedLoaderService} from '../../services/shared-loader.service';
 import {TranslateService} from '@ngx-translate/core';
 import {takeUntil} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../ngrx/app.reducer';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-shared-loader',
@@ -23,7 +24,8 @@ export class SharedLoaderComponent implements OnDestroy {
   constructor(private loaderService: SharedLoaderService,
               private renderer: Renderer2,
               private translate: TranslateService,
-              private store: Store<fromApp.State>) {
+              private store: Store<fromApp.State>,
+              @Inject(DOCUMENT) private document: Document) {
 
     // this.loaderService.showLoaderEvent$.pipe(takeUntil(this.onDestroy)).subscribe((value: LoaderType) => {
     this.store.select(fromApp.getLoaderState).pipe(takeUntil(this.onDestroy)).subscribe((value: any) => {
@@ -54,7 +56,7 @@ export class SharedLoaderComponent implements OnDestroy {
   }
 
   enableClick(): void {
-    document.removeEventListener('click', this.clickHandler, true);
+    this.document.removeEventListener('click', this.clickHandler, true);
   }
 
   ngOnDestroy(): void {
