@@ -33,5 +33,3 @@ export function authReducer(state = initialState, action: AuthActions): any {
   }
 }
 
-// export const getIsAuth = (state: State) => state.user;
-

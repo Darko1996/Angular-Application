@@ -13,6 +13,4 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export const getAuthState = createFeatureSelector<fromAuth.State>('auth');
-// export const getIsAuth = createSelector(getAuthState, fromLoader.authReducer);
-
 export const getLoaderState = createFeatureSelector<fromLoader.State>('loader');

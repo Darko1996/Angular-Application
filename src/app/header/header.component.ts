@@ -24,13 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private translate: TranslateService) { }
 
   ngOnInit(): void {
-    // this.userIsAuthenticated$ = this.store.select(fromApp.getIsAuth);
-    this.store.select(fromApp.getAuthState).pipe(
-      map(authState => authState.user),
-      takeUntil(this.onDestroy)
-    ).subscribe(user => {
+    this.store.select(fromApp.getAuthState).pipe(map(authState => authState.user), takeUntil(this.onDestroy)).subscribe(user => {
       this.userIsAuthenticated = !!user;
-      console.log('user', user);
     });
 
     // this.authService.authUser.pipe(takeUntil(this.onDestroy)).subscribe(data => {

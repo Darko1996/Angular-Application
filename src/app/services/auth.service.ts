@@ -9,6 +9,7 @@ import {LocalStorageService} from './angular-universal.service';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../ngrx/app.reducer';
 import * as Auth from '../ngrx/actions/auth.actions';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,9 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient,
               private store: Store<fromApp.State>,
+              private fireAuth: AngularFireAuth, // prevent firebase permission-denied error
               private localStorageService: LocalStorageService) {}
+
 
   login(user): any {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + AuthService.ROOT_ENDPOINT, {
