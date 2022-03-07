@@ -13,7 +13,6 @@ import {Subject} from 'rxjs/internal/Subject';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  // userIsAuthenticated$: Observable<any>;
   userIsAuthenticated = false;
   private onDestroy = new Subject();
 
@@ -39,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   signOut(): void {
     this.authService.logout();
+    this.setPageTitle('home');
   }
 
   ngOnDestroy(): void {
