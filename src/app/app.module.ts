@@ -27,6 +27,7 @@ import {translateBrowserLoaderFactory} from './ssr-translate/translate-browser.l
 import {StoreModule} from '@ngrx/store';
 import * as fromApp from './ngrx/app.reducer';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient, TransferState]
       }
     }),
+    MatCarouselModule.forRoot(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

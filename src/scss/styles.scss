@@ -1,4 +1,5 @@
 @import "colors";
+@import '~@angular/material/theming';
 
 html {
   height: 100%;
@@ -16,5 +17,23 @@ a {
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+
+// Define a custom mixin that takes in the current theme
+@mixin theme-color-grabber($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
 }
 

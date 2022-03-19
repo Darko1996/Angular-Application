@@ -14,6 +14,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private onDestroy = new Subject();
   userIsAuthenticated = false;
 
+  slides = [
+    {image: './assets/images/slider/img1.jpg'},
+    {image: './assets/images/slider/img2.jpg'},
+    {image: './assets/images/slider/img3.jpg'},
+    {image: './assets/images/slider/img4.jpg'}
+  ];
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {

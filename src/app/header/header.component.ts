@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from './../services/auth.service';
 import {Title} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
@@ -13,6 +13,7 @@ import {Subject} from 'rxjs/internal/Subject';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Input() style: number;
   userIsAuthenticated = false;
   private onDestroy = new Subject();
 
