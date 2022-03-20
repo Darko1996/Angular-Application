@@ -11,6 +11,7 @@ $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 @include theme-color-grabber($theme);
 @include angular-material-theme($theme);
 
+
 .dark {
   $dark-primary: mat-palette($mat-blue, 200,300, 900);
   $dark-accent:  mat-palette($mat-light-blue, 600, 100, 800);
@@ -20,3 +21,16 @@ $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
   @include theme-color-grabber($dark-theme);
   @include angular-material-theme($dark-theme);
 }
+
+// Set custom colors as theme colors
+$color-primary:  mat-color($theme-primary);
+$color-secondary: mat-color($theme-accent);
+$color-tertiary: mat-color($theme-warn);
+
+$color-snow:                   #FFFFFF;
+$color-pearl:                  #EFF1F2;
+$color-smoke:                  #D7D8DB;
+$color-fossil:                 #8F8F9A;
+$color-iron:                   #5b5b62;
+$color-shadow:                 #3b3b40;
+$color-ink:                    #000000;
