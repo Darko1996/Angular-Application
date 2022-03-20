@@ -3,7 +3,9 @@
 
   <div class="nav primaryColorBG">
     <div class="header-items">
-      <a routerLink="/" (click)="setPageTitle('home')" class="logo">{{'navigation.product-viewer' | translate}}</a>
+      <a routerLink="/" (click)="setPageTitle('home')">
+        <img class="logo" src="../../assets/images/logo.png" alt="logo">
+      </a>
       <div class="header-container">
         <div class="header-items-1">
           <a routerLink="/" (click)="setPageTitle('home')"><button class="btn from-center" mat-button>{{'navigation.home' | translate}}</button></a>
