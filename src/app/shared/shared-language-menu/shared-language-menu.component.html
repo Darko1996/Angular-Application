@@ -1,11 +1,11 @@
-<div [ngClass]="(orientation === 'vertical') ? 'language-menu' : 'language-menu-horizontal'">
+<section [ngClass]="(orientation === 'vertical') ? 'language-menu' : 'language-menu-horizontal'">
   <div class="selected-language" (click)="toggleAvailable()">
     <div class="language">
       <img [src]="currentLanguage?.src"
            [alt]="currentLanguage?.locale">
     </div>
   </div>
-  <img style="margin-bottom: 5px;" [src]="(orientation === 'vertical') ? '../../../assets/images/arrow.svg' : '../../../assets/images/arrow-button-locked.svg'" alt="Arrow" (click)="toggleAvailable()">
+  <img style="margin-bottom: 5px;" class="arrow" [src]="(orientation === 'vertical') ? '../../../assets/images/arrow.svg' : '../../../assets/images/arrow-button-locked.svg'" alt="Arrow" (click)="toggleAvailable()">
   <div [ngClass]="{'open-language' : showAvailable, 'available-languages' : !showAvailable}">
     <div *ngFor="let language of languages" (click)="select(language.locale)">
       <div *ngIf="language !== currentLanguage" class="language">
@@ -13,4 +13,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

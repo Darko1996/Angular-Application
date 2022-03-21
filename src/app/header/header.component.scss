@@ -76,6 +76,7 @@ header {
       justify-content: flex-end;
       align-items: center;
       width: 100%;
+      position: relative;
 
       .header-items-1 {
         display: flex;
@@ -83,7 +84,6 @@ header {
       }
 
       .header-items-2 {
-        position: relative;
         display: flex;
         align-items: center;
         width: 140px;
@@ -98,6 +98,11 @@ header {
     }
   }
 
+  svg {
+    position: absolute;
+    z-index: -1;
+  }
+
   .nav {
     height: 80px;
     display: flex;
@@ -105,32 +110,40 @@ header {
     width: 100%;
   }
 
-  .example-spacer {
-    flex: 1 1 50px;
-  }
-
-  .mob-menu {
+  .mob-menu-icon {
     display: none;
   }
 
-  @media (max-width: 700px) {
-    .nav {
-    }
+  ::ng-deep app-shared-language-menu .language-menu {
+    top: 5px;
+  }
+
+  .mob-menu-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .active {
+    background: yellow;
+  }
+
+  @include for-phone-only {
     .header-items {
       justify-content: space-between;
     }
-    .mob-menu {
+    .mob-menu-icon {
       display: block;
     }
 
-    .header-container {
+    .header-items-1, .header-items-2 {
       display: none !important;
     }
-  }
 
-  svg {
-    position: absolute;
-    z-index: -1;
+    .mat-button-wrapper {
+      color: red;
+    }
   }
 
 }

@@ -8,38 +8,35 @@
       </a>
       <div class="header-container">
         <div class="header-items-1">
-          <a routerLink="/" (click)="setPageTitle('home')"><button class="btn from-center" mat-button>{{'navigation.home' | translate}}</button></a>
-          <a routerLink="/products" (click)="setPageTitle('products')"><button class="btn from-center" mat-button>{{'navigation.products' | translate}}</button></a>
-          <a routerLink="/add-product" (click)="setPageTitle('add-product')" *ngIf="userIsAuthenticated"><button class="btn from-center" mat-button>{{'navigation.add-product' | translate}}</button></a>
+          <button routerLink="/" (click)="setPageTitle('home')" class="btn from-center" mat-button>{{'navigation.home' | translate}}</button>
+          <button routerLink="/products" (click)="setPageTitle('products')" class="btn from-center" mat-button>{{'navigation.products' | translate}}</button>
+          <button routerLink="/add-product" (click)="setPageTitle('add-product')" *ngIf="userIsAuthenticated" class="btn from-center" mat-button>{{'navigation.add-product' | translate}}</button>
         </div>
 
         <div class="header-items-2">
-          <a routerLink="/login" (click)="setPageTitle('sign-in')" *ngIf="!(userIsAuthenticated)"><button class="btn from-center" mat-button>{{'navigation.sign-in' | translate}}</button></a>
-          <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button class="btn from-center" mat-button>{{'navigation.sign-out' | translate}}</button></a>
-          <app-shared-language-menu orientation="vertical"></app-shared-language-menu>
+          <button routerLink="/login" (click)="setPageTitle('sign-in')" *ngIf="!(userIsAuthenticated)" class="btn from-center" mat-button>{{'navigation.sign-in' | translate}}</button>
+          <button routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated" class="btn from-center" mat-button>{{'navigation.sign-out' | translate}}</button>
         </div>
+
+        <app-shared-language-menu orientation="vertical"></app-shared-language-menu>
       </div>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="mob-menu">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div class="mob-menu-buttons">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="mob-menu-icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
     </div>
 
-    <mat-menu #menu="matMenu">
-      <a routerLink="/"><button mat-button>{{'navigation.home' | translate}}</button></a>
+    <mat-menu #menu="matMenu" class="mob-menu" [overlapTrigger]="false">
+      <button routerLink="/" class="btn from-center" mat-menu-item>{{'navigation.home' | translate}}</button>
       <mat-divider></mat-divider>
-      <a routerLink="/products"><button mat-menu-item>{{'navigation.products' | translate}}</button></a>
+      <button routerLink="/products" class="btn from-center" mat-menu-item>{{'navigation.products' | translate}}</button>
+      <button *ngIf="userIsAuthenticated" routerLink="/add-product" class="btn from-center" mat-menu-item>{{'navigation.add-product' | translate}}</button>
       <mat-divider></mat-divider>
-      <a routerLink="/add-product" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.add-product' | translate}}</button></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/login" *ngIf="!(userIsAuthenticated)">
-        <button mat-menu-item>
-          <mat-icon>login</mat-icon>
-          <span>{{'navigation.sign-in' | translate}}</span>
-        </button>
-      </a>
-      <a routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated"><button mat-menu-item>{{'navigation.sign-out' | translate}}</button></a>
-      <app-shared-language-menu orientation="horizontal"></app-shared-language-menu>
+      <button routerLink="/login" *ngIf="!(userIsAuthenticated)" class="btn from-center" mat-menu-item><span>{{'navigation.sign-in' | translate}}</span></button>
+      <button routerLink="/" (click)="signOut()" *ngIf="userIsAuthenticated" class="btn from-center" mat-menu-item>{{'navigation.sign-out' | translate}}</button>
     </mat-menu>
   </div>
 </header>

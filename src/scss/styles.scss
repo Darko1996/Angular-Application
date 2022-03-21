@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 
+// General style
 html {
   height: 100%;
   width: 100%;
@@ -39,5 +40,16 @@ a {
   .warnColorBG {
     background-color: mat-color($warn);
   }
+}
+
+// Header mobile menu
+.mob-menu {
+  width: 100vh;
+  position: relative;
+  padding: 15px;
+}
+
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
 }
 

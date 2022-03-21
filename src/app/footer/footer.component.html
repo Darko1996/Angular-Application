@@ -1,19 +1,32 @@
 <footer>
-    <div>
-      <svg class="waves"
-           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-      </svg>
+  <section class="style-1" *ngIf="style === 1">
+
+  </section>
+
+  <section class="style-2">
+    <main>
+      <div class="sec-1">
+        <h3>About us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem cum delectus dignissimos doloremque eos ex excepturi facilis hic inventore magni maxime mollitia!</p>
+      </div>
+      <div class="sec-2">
+        <a routerLink="/">{{'navigation.home' | translate}}</a>
+        <a routerLink="/products">{{'navigation.products' | translate}}</a>
+        <a routerLink="/">{{'navigation.home' | translate}}</a>
+        <a routerLink="/">{{'navigation.home' | translate}}</a>
+      </div>
+      <div class="sec-3">
+        <div class="social">
+          <a href=""><mat-icon>facebook</mat-icon></a>
+          <a href=""><mat-icon>facebook</mat-icon></a>
+        </div>
+        <button class="slide">Contact Us</button>
+      </div>
+    </main>
+
+    <div class="copyright">
+      <a href="">Powered By Darpet © 2022.</a>
     </div>
-  <div class="content flex">
-    <p>By Darko Lesevic</p>
-  </div>
+
+  </section>
 </footer>

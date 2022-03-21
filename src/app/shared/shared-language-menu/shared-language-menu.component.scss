@@ -49,7 +49,6 @@
     .language {
       background: $color-pearl;
       border-bottom: solid 1px $color-snow;
-
     }
   }
 }
@@ -103,5 +102,25 @@
   img {
     width: 30px;
     height: 30px;
+  }
+}
+
+.arrow {
+  width: 12px;
+}
+
+@include for-phone-only {
+  .language-menu, .language-menu-horizontal {
+    right: 20px;
+    top: 10px !important;
+
+    .language {
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+
   }
 }

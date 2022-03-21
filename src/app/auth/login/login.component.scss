@@ -98,7 +98,7 @@ section {
     clip-path: polygon(98% 17%, 100% 34%, 98% 51%, 100% 68%, 98% 84%, 100% 100%, 0 100%, 0 0, 100% 0);
   }
 
-  @media(max-width: 575.98px) {
+  @include for-phone-only {
     .container {
       flex-direction: column;
       box-shadow: none;
