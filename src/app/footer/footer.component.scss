@@ -4,14 +4,15 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: $color-ink;
+  background-color: $color-shadow;
   margin: auto;
-  padding: 50px 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 
   p, a {
     font-family: 'Lato', sans-serif;
     letter-spacing: 1px;
-    color: $color-snow;
+    color: $color-fossil;
+    line-height: 1.8;
   }
 
   a:hover {
@@ -21,11 +22,13 @@ footer {
 
   h3 {
     color: $color-snow;
+    text-transform: uppercase;
   }
 
   .style-2 {
     max-width: 1200px;
     margin: auto;
+    padding: 50px 20px;
 
     main {
       display: flex;
@@ -37,46 +40,81 @@ footer {
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       padding-bottom: 50px;
 
-      .sec-1, .sec-2, .sec-3 {
+      .sections {
         display: flex;
         column-gap: 20px;
         flex-direction: column;
         text-align: left;
+      }
+
+      .sec-1 {
+        @extend .sections;
+        width: 30%;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+      .sec-2 {
+        @extend .sections;
         width: 30%;
       }
 
       .sec-3 {
+        @extend .sections;
+        width: 30%;
+
         .social {
           display: flex;
           column-gap: 20px;
           margin-bottom: 20px;
-        }
 
-        button {
-          color: #{adjust-hue($color-secondary, 0deg)};
-          transition: 0.25s;
-          width: 200px;
-
-          &:hover,
-          &:focus {
-            border-color: #{adjust-hue($color-secondary, 0deg)};
-            color: #fff;
+          img {
+            width: 30px;
           }
         }
 
+        .subscribe {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          input {
+            height: 38px;
+            width: 100%;
+            text-indent: 10px;
+          }
+
+        }
+
         button {
-          background: none;
-          border: 2px solid;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #{adjust-hue($color-snow, 0deg)};
+          transition: 0.25s;
+          width: 50px;
+          background: $color-secondary;
+          border: 2px solid $color-secondary;
           font: inherit;
-          line-height: 1;
-          margin: 0.5em;
-          padding: 1em 2em;
+          padding: 10px;
+
+          img {
+            width: 20px;
+          }
+
+          &:hover,
+          &:focus {
+            border-color: #{adjust-hue($color-fossil, 0deg)};
+            color: #fff;
+          }
         }
 
         .slide:hover,
         .slide:focus {
           cursor: pointer;
-          box-shadow: inset 200px 0 0 0 #{adjust-hue($color-secondary, 0deg)};
+          box-shadow: inset 50px 0 0 0 #{adjust-hue($color-shadow, 0deg)};
         }
       }
 
@@ -86,7 +124,36 @@ footer {
       display: flex;
       justify-content: center;
       margin-top: 50px;
+
+      span {
+        color: $color-secondary;
+        margin: 0 5px;
+      }
     }
   }
+}
 
+@include for-phone-only {
+  footer {
+    position: initial;
+
+    h3 {
+      margin-top: 16px;
+    }
+
+    .style-2 {
+      main {
+        display: inline-block;
+        padding: 20px;
+
+        .sections {
+          width: 100%;
+        }
+
+        .social {
+          margin: 20px auto;
+        }
+      }
+    }
+  }
 }
