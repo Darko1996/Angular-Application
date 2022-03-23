@@ -1,5 +1,121 @@
 @import "../../scss/theme";
 
-section {
-  background-color: $color-shadow;
+.section-1 {
+    height: 700px;
+
+    ::ng-deep mat-carousel{
+      .carousel {
+        height: 700px !important;
+
+        ul > li {
+          height: 700px !important;
+        }
+      }
+    }
+}
+
+.section-2 {
+  .box {
+    position: relative;
+    width: 340px;
+    height: 340px;
+
+    .content {
+      height: 316px;
+      width: 316px;
+      background: #000;
+      padding: 10px;
+      overflow: hidden;
+      border: 2px solid #fff;
+
+      img {
+        height: 316px;
+        width: 316px;
+        object-fit: cover;
+      }
+
+      .details {
+        margin-top: -100px;
+        margin-left: 30px;
+        color: $color-snow;
+        opacity: 0;
+        transition: .3s ease;
+
+        a {
+          font-style: italic;
+          color: $color-snow;
+          text-decoration: underline;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        .details {
+          opacity: 1;
+
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,.1);
+        transition: 0.5s;
+        pointer-events: none;
+      }
+    }
+
+    &:hover span:before {
+      transform: scaleX(0);
+    }
+
+    &:hover .content:before {
+      left: -50%;
+    }
+
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #ffa500;
+        transform-origin: left;
+        transition: 0.5s;
+      }
+
+      &:nth-child(even):before {
+        transform-origin: right;
+        transition-delay: 0.5s;
+      }
+      &:nth-child(1) {
+        transform: rotate(0deg);
+      }
+      &:nth-child(2) {
+        transform: rotate(90deg);
+      }
+      &:nth-child(3) {
+        transform: rotate(180deg);
+      }
+      &:nth-child(3) {
+        transform: rotate(180deg);
+      }
+      &:nth-child(4) {
+        transform: rotate(270deg);
+      }
+    }
+  }
+
 }

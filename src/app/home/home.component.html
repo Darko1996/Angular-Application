@@ -1,7 +1,23 @@
-<section >
-  <div class="slider">
-    <mat-carousel timings="200ms ease-in" [autoplay]="true" interval="6000" color="white" [hideArrows]="false" [hideIndicators]="false">
+<section class="section-1">
+  <div>
+    <mat-carousel timings="200ms ease-in"[autoplay]="true" interval="6000" color="white" [hideArrows]="false" [hideIndicators]="false">
       <mat-carousel-slide *ngFor="let slide of slides; let i = index" [image]="slide.image"></mat-carousel-slide>
     </mat-carousel>
+  </div>
+</section>
+
+<section class="section-2">
+  <div class="box">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <div class="content">
+      <img src="/assets/images/products/product.jpg" alt="product">
+      <div class="details">
+        <h3>Product Name</h3>
+        <a href="">Find out more</a>
+      </div>
+    </div>
   </div>
 </section>

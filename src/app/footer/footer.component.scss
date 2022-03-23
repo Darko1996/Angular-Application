@@ -1,8 +1,6 @@
 @import "../../scss/theme";
 
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background-color: $color-shadow;
   margin: auto;
@@ -135,8 +133,6 @@ footer {
 
 @include for-phone-only {
   footer {
-    position: initial;
-
     h3 {
       margin-top: 16px;
     }
