@@ -7,16 +7,21 @@
 </section>
 
 <section class="section-2">
-  <div class="box">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <div class="content">
-      <img src="/assets/images/products/product.jpg" alt="product">
-      <div class="details">
-        <h3>Product Name</h3>
-        <a href="">Find out more</a>
+  <div class="title">
+    <h1>Products</h1>
+  </div>
+  <div class="products">
+    <div class="box" *ngFor="let product of products">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <div class="content">
+        <img src="{{product?.image}}" alt="{{product?.name}}">
+        <div class="details">
+          <h3>{{product?.name}}</h3>
+          <a href="{{product?.link}}">Find out more</a>
+        </div>
       </div>
     </div>
   </div>

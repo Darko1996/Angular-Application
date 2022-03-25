@@ -21,6 +21,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     {image: './assets/images/slider/img4.jpg'}
   ];
 
+  products = [
+    {image: '/assets/images/products/product.jpg', name: 'Product 1', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 2', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 3', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 4', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 5', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 6', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 7', link: '/products'},
+    {image: '/assets/images/products/product.jpg', name: 'Product 8', link: '/products'},
+  ];
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {

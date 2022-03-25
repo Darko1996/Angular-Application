@@ -126,10 +126,6 @@ header {
     position: relative;
   }
 
-  .active {
-    background: yellow;
-  }
-
   @include for-phone-only {
     .header-items {
       justify-content: space-between;
@@ -140,10 +136,6 @@ header {
 
     .header-items-1, .header-items-2 {
       display: none !important;
-    }
-
-    .mat-button-wrapper {
-      color: red;
     }
   }
 
