@@ -125,19 +125,18 @@ header {
     align-items: center;
     position: relative;
   }
+}
 
-  @include for-phone-only {
-    .header-items {
-      justify-content: space-between;
-    }
-    .mob-menu-icon {
-      display: block;
-    }
-
-    .header-items-1, .header-items-2 {
-      display: none !important;
-    }
+@include for-phone-only {
+  .header-items {
+    justify-content: space-between;
+  }
+  .mob-menu-icon {
+    display: block;
   }
 
+  .header-items-1, .header-items-2 {
+    display: none !important;
+  }
 }
 

@@ -32,6 +32,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     {image: '/assets/images/products/product.jpg', name: 'Product 8', link: '/products'},
   ];
 
+  reviews = [
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 1', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 2', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 3', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 4', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 5', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+    {webp: '/assets/images/reviews/person1.webp', src: '/assets/images/reviews/person1.jpg', name: 'Osoba 6', comment: 'Excepturi facilis hic inventore magni maxime mollitia!'},
+  ];
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {

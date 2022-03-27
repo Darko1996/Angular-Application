@@ -1,14 +1,12 @@
 <section class="section-1">
-  <div>
-    <mat-carousel timings="200ms ease-in"[autoplay]="true" interval="6000" color="white" [hideArrows]="false" [hideIndicators]="false">
-      <mat-carousel-slide *ngFor="let slide of slides; let i = index" [image]="slide.image"></mat-carousel-slide>
-    </mat-carousel>
-  </div>
+  <mat-carousel timings="500ms ease" [autoplay]="true" interval="6000" color="white" [hideArrows]="false" [hideIndicators]="false">
+    <mat-carousel-slide *ngFor="let slide of slides; let i = index" [image]="slide.image"></mat-carousel-slide>
+  </mat-carousel>
 </section>
 
 <section class="section-2">
   <div class="title">
-    <h1>Products</h1>
+    <h1>Our Best Products</h1>
   </div>
   <div class="products">
     <div class="box" *ngFor="let product of products">
@@ -25,4 +23,31 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="section-3">
+  <div class="title">
+    <h1>Reviews</h1>
+  </div>
+  <mat-carousel timings="500ms ease-in" interval="6000" [autoplay]="true" color="white" [hideArrows]="false" [hideIndicators]="true">
+    <mat-carousel-slide *ngFor="let slide of [0, 1]; let i = index">
+      <div class="comments">
+        <div class="card-sub" *ngFor="let review of (i === 0 ? (reviews | slice: 0:3) : (reviews | slice: 3:6));">
+          <div class="card-a">
+            <picture>
+              <source srcset="{{review?.webp}}" type="image/webp">
+              <source srcset="{{review?.src}}" type="image/jpg">
+              <img src="{{review?.src}}" alt="{{review?.name}}">
+            </picture>
+          </div>
+          <div class="card-b">
+            <h4>{{review?.name}}</h4>
+            <p>{{review?.comment}}</p>
+          </div>
+        </div>
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+
+
 </section>

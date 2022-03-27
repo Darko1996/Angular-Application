@@ -1,7 +1,8 @@
 @import "../../scss/theme";
+@import "../../scss/styles";
 
 section {
-  margin: 100px 0;
+  margin: auto auto 100px auto;
 
   .title {
     display: flex;
@@ -26,7 +27,9 @@ section {
 }
 
 .section-1 {
+    max-width: 1800px;
     height: 700px;
+    //margin: -150px auto auto auto;
 
     ::ng-deep mat-carousel{
       .carousel {
@@ -42,11 +45,11 @@ section {
 .section-2 {
   .products {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 45px;
     column-gap: 45px;
-    max-width: 1500px;
+    max-width: 1800px;
     margin: auto;
 
     .box {
@@ -159,3 +162,72 @@ section {
     }
   }
 }
+
+.section-3 {
+  background-color: $color-pearl;
+
+  .comments {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    .card-sub {
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      font-weight: 400;
+      padding: 25px;
+      width: 200px !important;
+      height: 260px !important;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+      white-space: normal !important;
+      margin: 0 25px;
+      -webkit-box-sizing: initial;
+      box-sizing: initial;
+
+      .card-a {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+
+        img {
+          border-radius: 100%;
+          width: 100px;
+          height: 100px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+
+      .card-b {
+        width: 100%;
+      }
+    }
+
+    h4 {
+      font-size: 18px;
+    }
+  }
+}
+
+@include for-phone-only {
+  .section-2 {
+    .products {
+      justify-content: center;
+    }
+  }
+
+  .section-3 {
+
+  }
+}
+

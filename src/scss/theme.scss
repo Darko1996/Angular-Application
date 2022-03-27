@@ -34,3 +34,12 @@ $color-fossil:                 #8F8F9A;
 $color-iron:                   #5b5b62;
 $color-shadow:                 #3b3b40;
 $color-ink:                    #000000;
+
+
+@mixin for-phone-only {
+  @media (max-width: 600px) { @content; }
+}
+
+@mixin for-small-laptop-only {
+  @media (max-width: 1100px) { @content; }
+}

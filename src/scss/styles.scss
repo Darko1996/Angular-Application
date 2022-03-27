@@ -48,8 +48,3 @@ a {
   position: relative;
   padding: 15px;
 }
-
-@mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
-}
-
