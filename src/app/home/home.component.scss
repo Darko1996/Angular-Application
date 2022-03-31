@@ -2,14 +2,15 @@
 @import "../../scss/styles";
 
 section {
-  margin: auto auto 100px auto;
+  margin: 0 5% 5% 5%;
 
   .title {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 100px 0;
+    margin-bottom: 100px;
+    text-transform: uppercase;
 
     h1 {
       transition: .3s ease;
@@ -17,11 +18,11 @@ section {
       margin: auto;
       padding-bottom: 15px;
       border-bottom: 2px solid $color-ink;
-      width: 200px;
+      width: 300px;
     }
 
     &:hover h1 {
-      width: 100px;
+      width: 250px;
     }
   }
 }
@@ -35,6 +36,10 @@ section {
       .carousel {
         height: 700px !important;
 
+        button {
+          color: $color-snow;
+        }
+
         ul > li {
           height: 700px !important;
         }
@@ -43,6 +48,20 @@ section {
 }
 
 .section-2 {
+  margin-left: 0;
+  margin-right: 0;
+
+  .top-img {
+    margin-bottom: -5px;
+  }
+  .bottom-img {
+    margin-top: -5px;
+  }
+
+  .products-main {
+    background-color: $color-pearl;
+  }
+
   .products {
     display: flex;
     justify-content: space-between;
@@ -50,7 +69,7 @@ section {
     row-gap: 45px;
     column-gap: 45px;
     max-width: 1800px;
-    margin: auto;
+    margin: 0 5%;
 
     .box {
       position: relative;
@@ -164,7 +183,11 @@ section {
 }
 
 .section-3 {
-  background-color: $color-pearl;
+  ::ng-deep mat-carousel {
+    button {
+      color: $color-secondary !important;
+    }
+  }
 
   .comments {
     display: -webkit-box;
@@ -183,12 +206,12 @@ section {
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
       font-weight: 400;
       padding: 25px;
-      width: 200px !important;
-      height: 260px !important;
-      background-color: #fff;
+      width: 200px;
+      height: 260px;
+      background-color: $color-pearl;
       border: 1px solid rgba(0, 0, 0, 0.125);
       border-radius: 0.25rem;
-      white-space: normal !important;
+      white-space: normal;
       margin: 0 25px;
       -webkit-box-sizing: initial;
       box-sizing: initial;

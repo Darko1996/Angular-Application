@@ -5,32 +5,38 @@
 </section>
 
 <section class="section-2">
-  <div class="title">
-    <h1>Our Best Products</h1>
-  </div>
-  <div class="products">
-    <div class="box" *ngFor="let product of products">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <div class="content">
-        <img src="{{product?.image}}" alt="{{product?.name}}">
-        <div class="details">
-          <h3>{{product?.name}}</h3>
-          <a href="{{product?.link}}">Find out more</a>
+  <svg class="top-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#EFF1F2" fill-opacity="1" d="M0,288L0,288L160,288L160,256L320,256L320,128L480,128L480,288L640,288L640,96L800,96L800,192L960,192L960,160L1120,160L1120,128L1280,128L1280,288L1440,288L1440,320L1280,320L1280,320L1120,320L1120,320L960,320L960,320L800,320L800,320L640,320L640,320L480,320L480,320L320,320L320,320L160,320L160,320L0,320L0,320Z"></path></svg>
+
+  <div class="products-main">
+    <div class="title">
+      <h1>Our Best Products</h1>
+    </div>
+    <div class="products">
+      <div class="box" *ngFor="let product of products">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="content">
+          <img src="{{product?.image}}" alt="{{product?.name}}">
+          <div class="details">
+            <h3>{{product?.name}}</h3>
+            <a href="{{product?.link}}">Find out more</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#EFF1F2" fill-opacity="1" d="M0,288L0,288L160,288L160,256L320,256L320,128L480,128L480,288L640,288L640,96L800,96L800,192L960,192L960,160L1120,160L1120,128L1280,128L1280,288L1440,288L1440,0L1280,0L1280,0L1120,0L1120,0L960,0L960,0L800,0L800,0L640,0L640,0L480,0L480,0L320,0L320,0L160,0L160,0L0,0L0,0Z"></path></svg>
 </section>
 
 <section class="section-3">
   <div class="title">
     <h1>Reviews</h1>
   </div>
-  <mat-carousel timings="500ms ease-in" interval="6000" [autoplay]="true" color="white" [hideArrows]="false" [hideIndicators]="true">
-    <mat-carousel-slide *ngFor="let slide of [0, 1]; let i = index">
+  <mat-carousel timings="500ms ease-in" interval="6000" [autoplay]="true" [hideArrows]="false" [hideIndicators]="true">
+    <mat-carousel-slide *ngFor="let slide of [0, 1]; let i = index" [image]="" [hideOverlay]="true">
       <div class="comments">
         <div class="card-sub" *ngFor="let review of (i === 0 ? (reviews | slice: 0:3) : (reviews | slice: 3:6));">
           <div class="card-a">
@@ -48,6 +54,4 @@
       </div>
     </mat-carousel-slide>
   </mat-carousel>
-
-
 </section>
